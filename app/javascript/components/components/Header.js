@@ -9,14 +9,15 @@ const Header = ({
   sign_out_route
 }) => {
   return (
+    <div className='Header'>
     <Nav>
-      {logged_in ? return (
+      {logged_in ? <>
         <NavItem>
           <a href={sign_out_route} className='nav-link'>
             Sign Out
           </a>
         </NavItem>
-      ) : return (
+      </> : <>
         <NavItem>
           <a href={sign_in_route} className='nav-link'>
             Sign In
@@ -25,9 +26,10 @@ const Header = ({
             Sign Up
           </a>
         </NavItem>
-      )}
+      </>}
 
     </Nav>
+    </div>
   )
 }
 

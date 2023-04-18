@@ -4,29 +4,20 @@ import Header from './components/Header'
 import Footer from './components/Footer'
 import About from './pages/About'
 import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 import IndexWorkouts from './pages/IndexWorkouts'
 import CreateWorkout from './pages/CreateWorkout'
 import EditWorkout from './pages/EditWorkout'
 import ShowWorkout from './pages/ShowWorkout'
-import ShowConnection from './pages/ShowConnection'
+import IndexComments from './pages/IndexComments'
+import CreateComment from './pages/CreateComment'
+import EditComment from './pages/EditComment'
 
-const App = ({
-  logged_in,
-  current_user,
-  new_user_route,
-  sign_in_route,
-  sign_out_route
-  }) => {
+const App = (props) => {
 
     return (
       <BrowserRouter>
-        <Navigation {
-          logged_in,
-          current_user,
-          new_user_route,
-          sign_in_route,
-          sign_out_route
-          }/>
+        <Header {...props}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
@@ -34,7 +25,12 @@ const App = ({
           <Route path='/workouts/new' element={<CreateWorkout />} />
           <Route path='/workouts/:id' element={<ShowWorkout />} />
           <Route path='/workouts/:id/edit' element={<EditWorkout />} />
+          <Route path='/workouts/:id/comments' element={<IndexComments />} />
+          <Route path='/workouts/:id/comments/new' element={<CreateComment />} />
+          <Route path='/workouts/:id/comments/edit' element={<EditComment />} />
+          <Route path='*' element={<NotFound />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     )
 }
