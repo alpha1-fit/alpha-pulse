@@ -9,7 +9,6 @@ class CreateWorkouts < ActiveRecord::Migration[7.0]
       t.text :description
       t.timestamp :created_at
       t.timestamp :updated_at
-
       t.timestamps
     end
   end
