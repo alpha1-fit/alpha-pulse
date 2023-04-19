@@ -7,8 +7,7 @@ class CreateWorkouts < ActiveRecord::Migration[7.0]
       t.integer :duration
       t.datetime :schedule
       t.text :description
-      t.timestamp :created_at
-      t.timestamp :updated_at
+    
 
       t.timestamps
     end
