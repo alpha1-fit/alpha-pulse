@@ -15,24 +15,26 @@ import EditComment from './pages/EditComment'
 
 const App = (props) => {
 
-    return (
+  return (
+    <div className='page'>
       <BrowserRouter>
-        <Header {...props}/>
+        <Header {...props} />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/workouts' element={<IndexWorkouts />} />
-          <Route path='/workouts/new' element={<CreateWorkout />} />
-          <Route path='/workouts/:id' element={<ShowWorkout />} />
-          <Route path='/workouts/:id/edit' element={<EditWorkout />} />
-          <Route path='/workouts/:id/comments' element={<IndexComments />} />
-          <Route path='/workouts/:id/comments/new' element={<CreateComment />} />
-          <Route path='/workouts/:id/comments/edit' element={<EditComment />} />
+          <Route path='/workoutindex' element={<IndexWorkouts />} />
+          <Route path='/workoutnew/new' element={<CreateWorkout />} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout />} />
+          <Route path='/workoutedit/:id/edit' element={<EditWorkout />} />
+          <Route path='/commentindex' element={<IndexComments />} />
+          <Route path='/commentnew' element={<CreateComment />} />
+          <Route path='/commentedit/:id' element={<EditComment />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
       </BrowserRouter>
-    )
+    </div>
+  )
 }
 
 export default App
