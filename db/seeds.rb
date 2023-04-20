@@ -11,8 +11,8 @@ user1_workouts = [
     {
         name: 'Arnold',
         workout_type: 'Weightlifting',
-        duration: '0:90:00',
-        schedule: '04/18/2023 00:00',
+        duration: '90',
+        schedule: '2023-04-18 00:00',
         description: '
         Bench press: 4 sets of 12, (60-75% of Bodyweight)
         Bench press Incline: 4 sets of 12, (60-75% of Bodyweight)
@@ -23,8 +23,8 @@ user1_workouts = [
        {
         name: 'Phelps',
         workout_type: 'Swimming',
-        duration: '0:180:00',
-        schedule: '04/23/2023 00:00',
+        duration: '180',
+        schedule: '2023/04/23 00:00',
         description: '
         25m swim sprints: 4 times
         50m swim: 4 times
@@ -39,8 +39,8 @@ user2_workouts = [
     {
         name: 'Elephant',
         workout_type: 'WeightLifting',
-        duration: '0:90:00',
-        schedule: '04/30/2023 00:00',
+        duration: '90',
+        schedule: '2023/04/30 00:00',
         description: '
         Leg press: 4 sets of 12
         Squats (weighted or no weighted): 4 sets of 12
@@ -54,8 +54,8 @@ user3_workouts = [
     {
         name: 'Peace',
         workout_type: 'Stretch',
-        duration: '0:50:00',
-        schedule: '04/22/2023 00:00',
+        duration: '50',
+        schedule: '2023/04/22 00:00',
         description: '
         Cross arm body stretch: 2 times for 30s each arm
         Shoulder mobility, T Y, and U poses 12 reps each
