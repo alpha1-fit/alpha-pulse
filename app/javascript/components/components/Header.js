@@ -1,5 +1,14 @@
-import React from 'react'
-import { Nav, NavItem } from 'reactstrap'
+import React, {useState} from 'react'
+import { Nav,
+  NavItem,
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  NavbarText,} from 'reactstrap'
+import { NavLink } from 'react-router-dom';
+import alphaPulseLogo from '../assets/PSX_20230414_155911- 1.png'
+
 
 
 const Header = ({
@@ -9,27 +18,46 @@ const Header = ({
   sign_in_route,
   sign_out_route
 }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+  
   return (
     <div className='Header'>
-    <Nav>
-      {logged_in ? <>
-        <NavItem>
-          <a href={sign_out_route} className='nav-link'>
-            Sign Out
-          </a>
-        </NavItem>
-      </> : <>
-        <NavItem>
-          <a href={sign_in_route} className='nav-link'>
-            Sign In
-          </a>
-          <a href={new_user_route} className='nav-link'>
-            Sign Up
-          </a>
-        </NavItem>
-      </>}
-
-    </Nav>
+    <Navbar fixed="top" expand color="dark" dark>
+      <a href="/">
+        <NavItem ><img src={alphaPulseLogo} alt='AlphaPulse Logo' style={{width: '100px'}}/></NavItem>
+        </a>
+        <NavbarBrand href="/">AlphaPulse</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="me-auto" navbar>
+            <NavItem>
+              <NavLink to="/workoutindex">Workouts</NavLink>
+            </NavItem>
+            {logged_in && (
+              <>
+                <NavItem>
+                  <NavLink to="/workoutnew/new">Create Workouts</NavLink>
+                </NavItem>
+                <NavItem>
+                  <a href={sign_out_route}>Sign Out</a>
+                </NavItem>
+              </>
+            )}
+            {!logged_in && (
+              <>
+                <NavItem>
+                  <a href={sign_in_route}>Sign In</a>
+                </NavItem>
+                <NavItem>
+                  <a href={new_user_route}>Sign Up</a>
+                </NavItem>
+              </>
+            )}
+          </Nav>
+        </Collapse>
+      </Navbar>
     </div>
   )
 }
