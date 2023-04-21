@@ -32,12 +32,11 @@ const FakerWorkouts = () => {
     </CardSubtitle>
         <a href={`/workoutshow/${value.id}`}>See Details</a>
     </CardBody>
-</Card>
-  )
-}
-  )}
-  </>
-  )
+    </Card>
+        )}
+      )}
+    </>
+   )
 }
 
 export default FakerWorkouts
