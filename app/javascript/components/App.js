@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import React from 'react'
+import React, { useEffect, useState, } from 'react'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import About from './pages/About'
@@ -14,7 +14,17 @@ import CreateComment from './pages/CreateComment'
 import EditComment from './pages/EditComment'
 
 const App = (props) => {
+  const [workouts, setWorkouts] = useState([])
+  useEffect(() => {
+    readWorkouts()
+  }, [])
 
+  const readWorkouts = () => {
+    fetch("/workouts")
+    .then((response) => response.json())
+    .then((payload) => setWorkouts(payload))
+    .catch((error) => console.log(error))
+  }
   return (
     <div className='page'>
       <BrowserRouter>
@@ -22,7 +32,7 @@ const App = (props) => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/workoutindex' element={<IndexWorkouts />} />
+          <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
           <Route path='/workoutnew/new' element={<CreateWorkout />} />
           <Route path='/workoutshow/:id' element={<ShowWorkout />} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout />} />
