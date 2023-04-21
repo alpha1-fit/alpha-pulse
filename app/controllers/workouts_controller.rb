@@ -4,4 +4,4 @@ class WorkoutsController < ApplicationController
         render json: workouts
     end
 end
-    def 
+     

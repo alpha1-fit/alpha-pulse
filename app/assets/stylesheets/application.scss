@@ -7,6 +7,7 @@
   --accent-color-2: #fe9176;
   --accent-color-3: #ffb7e9;
   --footer-height: 2.5rem;
+
 }
 
 .header {
@@ -54,4 +55,22 @@
 .hometext{
   text-align: center;
   color: #9bffff
+}
+
+.Indexpage{
+ background:var(--base-color);
+ min-height:100vh;
+ display:grid;
+ place-content: center;
+ flex:column;
+}
+.Card{
+  height: 60vh;
+  aspect-ratio: 1 / 1.5;
+  background: var(--base-color);
+  border-radius: 0.5rem;
+  color:#9bffff
+}
+.description{
+  color:#9bffff
 }
