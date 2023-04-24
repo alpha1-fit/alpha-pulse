@@ -4,10 +4,10 @@ import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import Example from '../components/DropDown';
 
-const IndexComments = ({ logged_in, comments }) => {
+const IndexComments = ({ logged_in, workout_id, comments }) => {
   return (
     <div className="card">
-      {logged_in && comments.map((comment, index) => {
+      {logged_in && comments.filter(comment => comment.workout_id === workout_id).map((comment, index) => {
         return (
           <Card style={{ width: '18rem' }} key={index}>
             <CardBody className="Cards">
