@@ -13,11 +13,43 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
     user_id: current_user?.id
   })
 
+  const [scheduleDate, setScheduleDate] = useState("")
+  const [scheduleTime, setScheduleTime] = useState("")
+
   const handleChange = (e) => {
     setNewWorkout({ ...newWorkout, [e.target.name]: e.target.value })
   }
+
+  const changeDuration = (e) => {
+    // Break time input into hours and minutes
+    // parseInt to convert to integers
+    // Add 60 * hours to minutes to get integer value for time
+    setNewWorkout({...newWorkout, [e.target.name]: `${parseInt(e.target.value.substring(0,2)) * 60 + parseInt(e.target.value.substring(3,5))}`})
+  }
+
+  const changeDate = (e) => {
+    setScheduleDate(e.target.value)
+    let newSchedule = `${e.target.value} ${scheduleTime}`
+    setNewWorkout({...newWorkout, ["schedule"]: newSchedule})
+  }
+
+  const changeTime = (e) => {
+    setScheduleTime(e.target.value)
+    let newSchedule = `${scheduleDate} ${e.target.value}`
+    setNewWorkout({...newWorkout, ["schedule"]: newSchedule})
+  }
+
   const handleSubmit = () => {
-    createWorkout(newWorkout)
+    console.log(newWorkout)
+    if(!logged_in) {
+      alert("Thank you for trying AlphaPulse. Please log in or sign up to continue!")
+    } else {
+      createWorkout(newWorkout)
+      navigate("/WorkoutIndex")
+    }
+  }
+
+  const cancelCreate = () => {
     navigate("/WorkoutIndex")
   }
   
@@ -58,9 +90,9 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
             <Input
               name="duration"
               placeholder="How long does this exercise take?"
-              type="text"
+              type="time"
               required="true"
-              onChange={handleChange}
+              onChange={changeDuration}
             />
         </FormGroup>
 
@@ -69,11 +101,18 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
             Schedule
           </Label>
             <Input
-              name="schedule"
+              name="schedule_date"
               placeholder="When would you like to schedule?"
-              type="text"
+              type="date"
               required="true"
-              onChange={handleChange}
+              onChange={changeDate}
+            />
+              <Input
+              name="schedule_time"
+              placeholder="When would you like to schedule?"
+              type="time"
+              required="true"
+              onChange={changeTime}
             />
         </FormGroup>
 
@@ -92,6 +131,9 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
     
         <Button onClick={handleSubmit} name="submit">
               Submit
+        </Button>
+        <Button onClick={cancelCreate} name="cancel">
+              Cancel
         </Button>
       </Form>
     </>
