@@ -9,9 +9,9 @@ import {
 
 const items = [
   {
-    src: "https://picsum.photos/id/456/1200/400",
+    src: "app/javascript/components/assets/joel.jpg",
     altText: "Full Stack Developer",
-    caption: "Your Guy In The Sky",
+    caption: <a href="https://www.linkedin.com/in/joelcarr2/" />,
     key: 1,
   },
   {

@@ -80,3 +80,21 @@ h2 {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.Indexpage {
+  background: var(--base-color);
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  flex: column;
+}
+.Card {
+  height: 60vh;
+  aspect-ratio: 1 / 1.5;
+  background: var(--base-color);
+  border-radius: 0.5rem;
+  color: #9bffff;
+}
+.description {
+  color: #9bffff;
+}
