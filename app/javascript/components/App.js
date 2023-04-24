@@ -36,7 +36,7 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then((payload) => readWorkout())
+      .then((payload) => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
   }
   return (

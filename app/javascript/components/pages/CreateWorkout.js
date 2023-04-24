@@ -2,14 +2,15 @@ import React, {useState} from 'react'
 import { FormGroup, Label, Input, Form,Button } from 'reactstrap'
 import { useNavigate } from 'react-router-dom'
 
-const CreateWorkout = ({ createWorkout }) => {
+const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
   const navigate = useNavigate()
   const [newWorkout, setNewWorkout] = useState({
     name: "",
     workout_type: "",
     duration: "",
     schedule: "",
-    description:""
+    description:"",
+    user_id: current_user?.id
   })
 
   const handleChange = (e) => {
@@ -32,23 +33,23 @@ const CreateWorkout = ({ createWorkout }) => {
               name="name"
               placeholder="What is the workout name"
               type="text"
-              onChange={handleChange}
-            />
-        </FormGroup>
-
-
-        <FormGroup>
-          <Label for="type">
-            Workout Type
-          </Label>
-            <Input
-              name="type"
-              placeholder="What is the type of workout?"
-              type="text"
+              required="true"
               onChange={handleChange}
             />
         </FormGroup>
         
+        <FormGroup>
+          <Label for="workout_type">
+            Workout Type
+          </Label>
+            <Input
+              name="workout_type"
+              placeholder="What is the type of workout?"
+              type="text"
+              required="true"
+              onChange={handleChange}
+            />
+        </FormGroup>
         
         <FormGroup>
           <Label for="duration">
@@ -58,10 +59,10 @@ const CreateWorkout = ({ createWorkout }) => {
               name="duration"
               placeholder="How long does this exercise take?"
               type="text"
+              required="true"
               onChange={handleChange}
             />
         </FormGroup>
-
 
         <FormGroup>
           <Label for="schedule">
@@ -71,6 +72,7 @@ const CreateWorkout = ({ createWorkout }) => {
               name="schedule"
               placeholder="When would you like to schedule?"
               type="text"
+              required="true"
               onChange={handleChange}
             />
         </FormGroup>
@@ -82,7 +84,8 @@ const CreateWorkout = ({ createWorkout }) => {
             <Input
               name="description"
               placeholder="Describe the workout!"
-              type="text"
+              type="textarea"
+              required="true"
               onChange={handleChange}
             />
         </FormGroup>
