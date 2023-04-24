@@ -1,13 +1,12 @@
-import React from 'react';
-import FakerComments from './FakerComments';
-import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import Example from '../components/DropDown';
+import React from 'react'
+import fakeComments from '../fakeComments'
+import { Card, CardText, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap'
 
-const IndexComments = ({ logged_in, comments }) => {
+const FakerComments = () => {
   return (
-    <div className="card">
-      {logged_in && comments.map((comment, index) => {
+    <>
+      <h1>Comments!</h1>
+      {fakeComments.map((comment, index) => {
         return (
           <Card style={{ width: '18rem' }} key={index}>
             <CardBody className="Cards">
@@ -29,17 +28,8 @@ const IndexComments = ({ logged_in, comments }) => {
         )
       }
       )}
-      {!logged_in && <FakerComments />}
-      <div>
-        <Button>
-          <NavLink to={`/commentnew/new`}>Create New Comment</NavLink>
-        </Button>
-      </div>
-      <div>
-      <Example />
-      </div>
-    </div>
-  );
+    </>
+  )
 }
 
-export default IndexComments
+export default FakerComments
