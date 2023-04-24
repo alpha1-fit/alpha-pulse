@@ -1,4 +1,4 @@
-@import 'bootstrap';
+@import "bootstrap";
 
 :root {
   --base-color: #151318;
@@ -7,18 +7,25 @@
   --accent-color-2: #fe9176;
   --accent-color-3: #ffb7e9;
   --footer-height: 2.5rem;
+  padding: 110px 350px 28px 45px;
 }
 
 .header {
   position: fixed;
   top: 0;
-  width: 100vw;
+  width: 100%;
   display: flex;
-  align-content: row;
+  justify-content: center;
+  align-items: center;
   gap: 2em;
   background-color: var(--base-color);
   color: var(--mid-color);
   border: 2px solid var(--accent-color-3);
+  font-weight: lighter;
+  font-size: 20px;
+  font-family: sans-serif;
+  height: 40px;
+  margin: 0;
 }
 
 .page-container {
@@ -27,31 +34,49 @@
 }
 
 .content-wrap {
+  min-height: 100vh;
   padding-bottom: var(--footer-height);
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   height: var(--footer-height);
   display: flex;
-  align-content: row;
-  gap: 2em;
+  justify-content: center;
+  align-items: center;
   background-color: var(--base-color);
+  color: var(--mid-color);
+  border: 2px solid var(--accent-color-3);
+  font-weight: lighter;
+  font-size: 20px;
+  font-family: sans-serif;
 }
-.home, h2 {
+@media (max-height: 600px) {
+  .footer {
+    position: static;
+  }
+}
+
+.home,
+h2 {
   color: #9bffff;
-  display: center
+  display: center;
 }
 .content {
   display: center;
   margin-left: auto;
-  margin-right:auto;
+  margin-right: auto;
   background-color: #151318;
- 
 }
-.hometext{
+.hometext {
   text-align: center;
-  color: #9bffff
+  color: #9bffff;
+}
+.csscarousel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
