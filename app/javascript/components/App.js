@@ -30,7 +30,7 @@ const App = (props) => {
     .then((payload) => setWorkouts(payload))
     .catch((error) => console.log(error))
   }
-
+  
   const createWorkout = (workout) => {
     fetch("/workouts", {
       body: JSON.stringify(workout),
@@ -52,6 +52,19 @@ const App = (props) => {
     .catch((error) => console.log(error))
   }
 
+   const updateWorkout = (workout, id) => {
+    fetch(`/workouts/${id}`, {
+      body: JSON.stringify(workout),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    })
+      .then((response) => response.json())
+      .then((payload) => readWorkouts(payload))
+      .catch((errors) => console.log("workout update errors:", errors));
+  }
+  
   return (
     <div className='page'>
       <BrowserRouter>
@@ -63,7 +76,7 @@ const App = (props) => {
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
          
           <Route path='/workoutshow/:id' element={<ShowWorkout />} />
-          <Route path='/workoutedit/:id/edit' element={<EditWorkout />} />
+          <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
           <Route path='/commentindex' element={<IndexComments {...props} comments={comments}/>} />
           <Route path='/commentnew' element={<CreateComment />} />
           <Route path='/commentedit/:id' element={<EditComment />} />
