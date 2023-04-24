@@ -8,7 +8,7 @@ import { Nav,
   NavbarText,} from 'reactstrap'
 import { NavLink } from 'react-router-dom';
 import alphaPulseLogo from '../assets/PSX_20230414_155911- 1.png'
-
+ 
 
 
 const Header = ({
