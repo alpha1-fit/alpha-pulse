@@ -40,7 +40,6 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
   }
 
   const handleSubmit = () => {
-    console.log(newWorkout)
     if(!logged_in) {
       alert("Thank you for trying αlphaPulse. Please log in or sign up to continue!")
     } else {

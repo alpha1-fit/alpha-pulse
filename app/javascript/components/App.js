@@ -27,7 +27,7 @@ const App = (props) => {
   }
 
   const createWorkout = (workout) => {
-    fetch("http://localhost:3000/workouts", {
+    fetch("/workouts", {
       body: JSON.stringify(workout),
       headers: {
         "Content-Type": "application/json"
@@ -48,7 +48,6 @@ const App = (props) => {
           <Route path='/about' element={<About />} />
           <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
-
          
           <Route path='/workoutshow/:id' element={<ShowWorkout />} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout />} />
