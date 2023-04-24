@@ -4,10 +4,14 @@ import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import Example from '../components/DropDown';
 
-const IndexComments = ({ logged_in, workout_id, comments }) => {
+const IndexComments = ({ logged_in, current_user, workout_id = 1, comments }) => {
+  const handleDelete = () => {
+
+  }
+
   return (
     <div className="card">
-      {logged_in && comments.filter(comment => comment.workout_id === workout_id).map((comment, index) => {
+      {logged_in && comments.map((comment, index) => {
         return (
           <Card style={{ width: '18rem' }} key={index}>
             <CardBody className="Cards">
@@ -23,7 +27,11 @@ const IndexComments = ({ logged_in, workout_id, comments }) => {
               <CardSubtitle className="mb-2 text-muted" tag="h6">
                 user: {comment.user_id}
               </CardSubtitle>
-              <a href={`/Commentshow/${comment.id}`}>See Details</a>
+              {current_user.id == comment.user_id &&
+              <>
+                <Button><NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink></Button>
+                <Button onClick={handleDelete}>Delete</Button>
+              </>}
             </CardBody>
           </Card>
         )
@@ -34,9 +42,6 @@ const IndexComments = ({ logged_in, workout_id, comments }) => {
         <Button>
           <NavLink to={`/commentnew/new`}>Create New Comment</NavLink>
         </Button>
-      </div>
-      <div>
-      <Example />
       </div>
     </div>
   );

@@ -21,7 +21,7 @@ const App = (props) => {
 
   const [comments, setComments] = useState([])
   useEffect(() => {
-    readWorkouts()
+    readComments()
   }, [])
 
   const readWorkouts = () => {
