@@ -25,6 +25,20 @@ const App = (props) => {
     .then((payload) => setWorkouts(payload))
     .catch((error) => console.log(error))
   }
+
+  const createWorkout = (workout) => {
+    fetch("/workouts", {
+      body: JSON.stringify(workout),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      
+      method: "POST"
+    })
+      .then((response) => response.json())
+      .then((payload) => readWorkouts())
+      .catch((errors) => console.log("Workout create errors:", errors))
+  }
   return (
     <div className='page'>
       <BrowserRouter>
@@ -33,7 +47,8 @@ const App = (props) => {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
-          <Route path='/workoutnew/new' element={<CreateWorkout />} />
+          <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
+         
           <Route path='/workoutshow/:id' element={<ShowWorkout />} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout />} />
           <Route path='/commentindex' element={<IndexComments />} />
