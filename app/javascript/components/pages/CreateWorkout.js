@@ -42,7 +42,7 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
   const handleSubmit = () => {
     console.log(newWorkout)
     if(!logged_in) {
-      alert("Thank you for trying AlphaPulse. Please log in or sign up to continue!")
+      alert("Thank you for trying αlphaPulse. Please log in or sign up to continue!")
     } else {
       createWorkout(newWorkout)
       navigate("/WorkoutIndex")
@@ -65,7 +65,7 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
               name="name"
               placeholder="What is the workout name"
               type="text"
-              required="true"
+              required={true}
               onChange={handleChange}
             />
         </FormGroup>
@@ -78,7 +78,7 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
               name="workout_type"
               placeholder="What is the type of workout?"
               type="text"
-              required="true"
+              required={true}
               onChange={handleChange}
             />
         </FormGroup>
@@ -91,7 +91,7 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
               name="duration"
               placeholder="How long does this exercise take?"
               type="time"
-              required="true"
+              required={true}
               onChange={changeDuration}
             />
         </FormGroup>
@@ -104,14 +104,14 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
               name="schedule_date"
               placeholder="When would you like to schedule?"
               type="date"
-              required="true"
+              required={true}
               onChange={changeDate}
             />
               <Input
               name="schedule_time"
               placeholder="When would you like to schedule?"
               type="time"
-              required="true"
+              required={true}
               onChange={changeTime}
             />
         </FormGroup>
@@ -124,7 +124,7 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
               name="description"
               placeholder="Describe the workout!"
               type="textarea"
-              required="true"
+              required={true}
               onChange={handleChange}
             />
         </FormGroup>
@@ -139,6 +139,5 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
     </>
   )
 }
- 
 
 export default CreateWorkout
