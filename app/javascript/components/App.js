@@ -38,7 +38,7 @@ const App = (props) => {
       .then((response) => response.json())
       .then((payload) => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
-   
+  }
    const updateWorkout = (workout, id) => {
     fetch(`/workouts/${id}`, {
       body: JSON.stringify(workout),
