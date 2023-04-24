@@ -38,7 +38,7 @@ const App = (props) => {
       .then((response) => response.json())
       .then((payload) => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
-   
+  }
    const updateWorkout = (workout, id) => {
     fetch(`/workouts/${id}`, {
       body: JSON.stringify(workout),
@@ -51,6 +51,17 @@ const App = (props) => {
       .then((payload) => readWorkouts(payload))
       .catch((errors) => console.log("workout update errors:", errors));
   }
+  const deleteWorkout = (id) => {
+    fetch(`/workouts/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then((payload) => readWorkout())
+      .catch((errors) => console.log("delete errors:", errors))
+  }
   return (
     <div className='page'>
       <BrowserRouter>
@@ -61,7 +72,7 @@ const App = (props) => {
           <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
          
-          <Route path='/workoutshow/:id' element={<ShowWorkout />} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout workouts={workouts} deleteWorkout={deleteWorkout}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
           <Route path='/commentindex' element={<IndexComments />} />
           <Route path='/commentnew' element={<CreateComment />} />
@@ -73,5 +84,6 @@ const App = (props) => {
     </div>
   )
 }
+
 
 export default App

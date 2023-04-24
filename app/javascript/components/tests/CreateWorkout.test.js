@@ -13,15 +13,16 @@ describe("<CreateWorkout />", () => {
     schedule: '2023-04-18 00:00',
     description: 'Bench press: 4 sets of 12, (60-75% of Bodyweight Bench press Incline: 4 sets of 12, (60-75% of Bodyweight) Bodyweight Dips: 4 sets of 12Push ups: 4 sets to failure Adjust weight by conformability'
   }
-
+  
   beforeEach(() => {
     const createWorkoutSpy = jest.fn()
+  render(
+    <BrowserRouter>
+      <CreateWorkout createWorkout={createWorkoutSpy} />
+    </BrowserRouter>
+  )
 
-    render(
-      <BrowserRouter>
-        <CreateWorkout createWorkout={createWorkoutSpy} />
-      </BrowserRouter>
-    )
+   
   })
 
   it("renders the page", () => {
@@ -52,7 +53,15 @@ describe("<CreateWorkout />", () => {
   //   userEvent.type(input, newName)
   //   expect(input.value).toBe(newName)
   // })
+//  test ("user input", () => {
+  // render( <BrowserRouter><CreateWorkout /></BrowserRouter>)
 
+//   screen.logTestingPlaygroundURL()
+//   userEvent.type(screen.getByPlaceholderText("Describe the workout!"), "Hello")
+ 
+//   expect(screen.getByPlaceholderText("Describe the workout!")).toHaveValue("Hello")
+//  }
+//  )
   // Doesn't work - tried various input values and keep receiveing '' in return
   // it("updates duration when data is input", () => {
   //   const input = screen.getByPlaceholderText(/how long does this exercise take\?/i)
