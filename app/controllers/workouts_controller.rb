@@ -3,7 +3,7 @@ class WorkoutsController < ApplicationController
       workouts = Workout.all
       render json: workouts
     end
-  
+      
     def create
       workout = Workout.create(workout_params)
       if workout.valid? 
@@ -12,17 +12,25 @@ class WorkoutsController < ApplicationController
         render json: workout.errors, status: 422
       end
     end
-  
+
     def update
+        workout = Workout.find(params[:id])
+        workout.update(workout_params)
+        if workout.valid?
+            render json: workout
+        else
+            render json: workout.errors, status: 422
+        end
+    end
+
+    def destroy
       workout = Workout.find(params[:id])
-      workout.update(workout_params)
+      workout.destroy
       if workout.valid?
         render json: workout
-      else
-        render json: workout.errors, status: 422
       end
-    end
-  
+  end
+
     private
       def workout_params
         params.require(:workout).permit(:name, :workout_type, :duration, :schedule, :description, :user_id)

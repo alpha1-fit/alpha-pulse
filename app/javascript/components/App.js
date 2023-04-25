@@ -74,8 +74,7 @@ const App = (props) => {
           <Route path='/about' element={<About />} />
           <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
-         
-          <Route path='/workoutshow/:id' element={<ShowWorkout />} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
           <Route path='/commentindex' element={<IndexComments {...props} comments={comments}/>} />
           <Route path='/commentnew' element={<CreateComment />} />
@@ -87,5 +86,6 @@ const App = (props) => {
     </div>
   )
 }
+
 
 export default App

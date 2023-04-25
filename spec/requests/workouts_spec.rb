@@ -486,36 +486,30 @@ RSpec.describe "Workouts", type: :request do
       expect(json['description']).to include "can't be blank"
     end
   end
-
-  # Developed in anticipation of delete coding in controller
-  # describe "DELETE/destroy" do
-  #   it "removes an element from the table" do
-  #     workout_params = {
-  #       workout: {
-  #         name: "Arnold",
-  #         workout_type: "Weightlifting",
-  #         user_id: 1,
-  #         duration: 90,
-  #         schedule: '2023-04-18 00:00',
-  #         description: "Bench press: 4 sets of 12, (60-75% of Bodyweight)
-  #         Bench press Incline: 4 sets of 12, (60-75% of Bodyweight)
-  #         Bodyweight Dips: 4 sets of 12
-  #         Push ups: 4 sets to failure
-  #         Adjust weight by comfortablity"
-  #       }
-  #     }
-
-  #     post "/workouts", params: workout_params
-
-  #     expect(response).to have_http_status(200)
-
-  #     workout = Workout.first
-
-  #     delete "/workouts/#{workout.id}"
-
-  #     expect(response).to have_http_status(200)
-
-  #     expect { Workout.find(workout.id) }.to raise_error(ActiveRecord::RecordNotFound)
-  #   end
-  # end
+  describe "DELETE /destroy" do
+    it "deletes an workout" do
+      workout_params = {
+          workout: {
+            name: "Arnold",
+            workout_type: "Weightlifting",
+            user_id: 1,
+            duration: 90,
+            schedule: '2023-04-18 00:00',
+            description: "Bench press: 4 sets of 12, (60-75% of Bodyweight)
+            Bench press Incline: 4 sets of 12, (60-75% of Bodyweight)
+            Bodyweight Dips: 4 sets of 12
+            Push ups: 4 sets to failure
+            Adjust weight by comfortablity"
+        }
+    }
+  
+    post "/workouts", params: workout_params
+    workout = Workout.first 
+    workouts = Workout.all
+  
+    delete "/workouts/#{workout.id}"
+    expect(response).to have_http_status(200)
+    expect(workouts).to be_empty
+    end
+  end
 end
