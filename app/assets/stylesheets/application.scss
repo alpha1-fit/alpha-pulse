@@ -22,7 +22,8 @@
   font-weight: lighter;
   font-size: 20px;
   font-family: sans-serif;
-  height: var(--header-height)
+  height: var(--header-height);
+  z-index: 1000;
 }
 
 .logo {

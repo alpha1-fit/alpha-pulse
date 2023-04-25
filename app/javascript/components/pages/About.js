@@ -14,8 +14,8 @@ import github from '../assets/github.png'
 import linkedin from '../assets/linkedin.png'
 import resume from '../assets/quire.png'
 
-const About = (index = 0) => {
-  const [activeIndex, setActiveIndex] = useState(index);
+const About = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
   const [items, setItems] = useState([
     {
       src: { joel },

@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
 import alphaPulseLogo from "../assets/PSX_20230414_155911- 1.png";
+
 const Header = ({
   logged_in,
   current_user,
@@ -32,35 +33,36 @@ const Header = ({
             </NavItem>
             {logged_in && (
               <>
-                <NavItem>
-                  <NavLink to="/workoutnew/new">Create Workouts</NavLink>
-                </NavItem>
-              </div>
-              <div className="navitem">
-                <NavItem>
-                  <a href={sign_out_route}>Sign Out</a>
-                </NavItem>
-              </div>
-            </>
-          )}
-          {!logged_in && (
-            <>
-              <div className="navitem">
-                <NavItem>
-                  <a href={sign_in_route}>Sign In</a>
-                </NavItem>
-              </div>
-              <div className="navitem">
-                <NavItem>
-                  <a href={new_user_route}>Sign Up</a>
-                </NavItem>
-              </div>
-            </>
-          )}
-        </Nav>
-      </Collapse>
-    </Navbar>
-    
+                <div className="navitem">
+                  <NavItem>
+                    <NavLink to="/workoutnew/new">Create Workouts</NavLink>
+                  </NavItem>
+                </div>
+                <div className="navitem">
+                  <NavItem>
+                    <a href={sign_out_route}>Sign Out</a>
+                  </NavItem>
+                </div>
+              </>
+            )}
+            {!logged_in && (
+              <>
+                <div className="navitem">
+                  <NavItem>
+                    <a href={sign_in_route}>Sign In</a>
+                  </NavItem>
+                </div>
+                <div className="navitem">
+                  <NavItem>
+                    <a href={new_user_route}>Sign Up</a>
+                  </NavItem>
+                </div>
+              </>
+            )}
+          </Nav>
+        </Collapse>
+      </Navbar>
+    </div>
   );
 };
-export default Header;
+export default Header
