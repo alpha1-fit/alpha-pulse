@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 import {
   Nav,
   NavItem,
@@ -7,21 +7,17 @@ import {
   NavbarToggler,
   NavbarBrand,
   NavbarText,
-} from 'reactstrap'
-import { NavLink } from 'react-router-dom';
-import alphaPulseLogo from '../assets/PSX_20230414_155911- 1.png'
-
-
-
+} from "reactstrap";
+import { NavLink } from "react-router-dom";
+import alphaPulseLogo from "../assets/PSX_20230414_155911- 1.png";
 const Header = ({
   logged_in,
   current_user,
   new_user_route,
   sign_in_route,
-  sign_out_route
+  sign_out_route,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-
   const toggle = () => setIsOpen(!isOpen);
 
   return (
@@ -39,26 +35,32 @@ const Header = ({
                 <NavItem>
                   <NavLink to="/workoutnew/new">Create Workouts</NavLink>
                 </NavItem>
+              </div>
+              <div className="navitem">
                 <NavItem>
                   <a href={sign_out_route}>Sign Out</a>
                 </NavItem>
-              </>
-            )}
-            {!logged_in && (
-              <>
+              </div>
+            </>
+          )}
+          {!logged_in && (
+            <>
+              <div className="navitem">
                 <NavItem>
                   <a href={sign_in_route}>Sign In</a>
                 </NavItem>
+              </div>
+              <div className="navitem">
                 <NavItem>
                   <a href={new_user_route}>Sign Up</a>
                 </NavItem>
-              </>
-            )}
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
-  )
-}
-
-export default Header
+              </div>
+            </>
+          )}
+        </Nav>
+      </Collapse>
+    </Navbar>
+    
+  );
+};
+export default Header;
