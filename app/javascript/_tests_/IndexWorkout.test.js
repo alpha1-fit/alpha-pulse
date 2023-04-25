@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
-import Card from "../pages/IndexWorkouts"
+import Card from "../components/pages/IndexWorkouts"
 import "@testing-library/jest-dom"
 
 describe("<IndexWorkouts />", () => {

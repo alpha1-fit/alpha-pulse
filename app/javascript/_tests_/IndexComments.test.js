@@ -1,7 +1,7 @@
 import React from 'react'
 import { render, screen } from "@testing-library/react"
 import { BrowserRouter } from "react-router-dom"
-import IndexComments from "../pages/IndexComments"
+import IndexComments from "../components/pages/IndexComments"
 import "@testing-library/jest-dom"
 
 describe("<IndexWorkouts />", () => {

@@ -1,8 +1,8 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import ShowWorkout from "../pages/ShowWorkout";
+import ShowWorkout from "../components/pages/ShowWorkout";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import workouts from "../App";
+import workouts from "../components/App";
 
 describe("<ShowWorkout />", () => {
   it("it renders without crashing", () => {

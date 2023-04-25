@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CreateWorkout from "../pages/CreateWorkout";
+import CreateWorkout from "../components/pages/CreateWorkout";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 import "@testing-library/jest-dom";
 

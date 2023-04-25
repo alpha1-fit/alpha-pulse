@@ -2,9 +2,9 @@ import React from "react";
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import EditWorkout from "../pages/EditWorkout";
+import EditWorkout from "../components/pages/EditWorkout";
 import { BrowserRouter, MemoryRouter, Routes, Route } from "react-router-dom";
-import workouts from "../App"
+import workouts from "../components/fakeWorkouts"
 
 describe("<EditWorkout />", () => {
     it("it renders without crashing", () => {

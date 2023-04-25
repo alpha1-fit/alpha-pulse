@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import About from "../pages/About";
+import About from "../components/pages/About";
 import { BrowserRouter } from "react-router-dom";
 import React from "react";
 import { UserEvent } from "@testing-library/user-event";
