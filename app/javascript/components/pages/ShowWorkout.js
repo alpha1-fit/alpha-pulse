@@ -10,14 +10,24 @@ import {
 import { NavLink, useParams, useNavigate } from "react-router-dom";
 import fakeWorkouts from "../fakeWorkouts";
 
-const ShowWorkout = ({ workouts, logged_in }) => {
+const ShowWorkout = ({ workouts, logged_in, deleteWorkout }) => {
   const { id } = useParams();
   const navigate = useNavigate();
   let selectedWorkout =
     Array.isArray(workouts) && workouts.find((workout) => workout.id === +id);
-  let fakeSelectedWorkout =
-    Array.isArray(fakeWorkouts) &&
-    fakeWorkouts.find((fakeWorkout) => fakeWorkout.id === +id);
+    let fakeSelectedWorkout = Array.isArray(fakeWorkouts) && fakeWorkouts.find(
+      (fakeWorkout) => fakeWorkout.id === +id)
+    
+    const handleDelete = () => {
+      if (!logged_in) {
+        alert("Thank you for trying αlphaPulse. Please log in or sign up to continue!")
+      
+      }
+      else {
+        deleteWorkout(selectedWorkout.id)
+        navigate("/workoutindex")
+      }
+    }
 
   return (
     <div className="workout-show-align">
@@ -45,6 +55,7 @@ const ShowWorkout = ({ workouts, logged_in }) => {
                 Edit a Workout
               </NavLink>
             </Button>
+            <Button onClick={handleDelete}>Delete Workout Profile</Button>
           </CardBody>
         </Card>
       )}
