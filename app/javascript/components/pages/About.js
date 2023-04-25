@@ -1,113 +1,118 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
   CarouselCaption,
-} from 'reactstrap';
-<body>
-    <header>
-        <h1>This is Header.</h1>
-    </header>
+} from "reactstrap";
+import chris from '../assets/chris_360.jpg'
+import dennis from '../assets/dennis_360.jpg'
+import joel from '../assets/joel.jpg'
+import yahya from '../assets/yahya_360.jpg'
+import github from '../assets/github.png'
+import linkedin from '../assets/linkedin.png'
+import resume from '../assets/quire.png'
 
-    <article>
-        <h1>This is main content.</h1>
-    </article>
-
-    <footer>
-        <h1>This is Footer.</h1>
-    </footer>
-</body>
-const items = [
-  {
-    src: 'https://picsum.photos/id/123/1200/400',
-    altText: 'Slide 1',
-    caption: 'Slide 1',
-    key: 1,
-  },
-  {
-    src: 'https://picsum.photos/id/456/1200/400',
-    altText: 'Slide 2',
-    caption: 'Slide 2',
-    key: 2,
-  },
-  {
-    src: 'https://picsum.photos/id/678/1200/400',
-    altText: 'Slide 3',
-    caption: 'Slide 3',
-    key: 3,
-  },
-];
-
-function Example(args) {
+const About = () => {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
+  const [items, setItems] = useState([
+    {
+      src: { joel },
+      altText: "Product Manager",
+      caption: "Joel Carr",
+      github: "https://github.com/JoelCarr619",
+      linkedin: "https://www.linkedin.com/in/joelcarr2/",
+      key: 1,
+    },
+    {
+      src: { dennis },
+      altText: "Design Lead",
+      caption: "Dennis Tran",
+      github: "https://github.com/RichDTran",
+      linkedin: "https://www.linkedin.com/in/dennis-tran-/",
+      key: 2,
+    },
+    {
+      src: { chris },
+      altText: "Tech Lead",
+      caption: "Chris Aument",
+      github: "https://github.com/csaument",
+      linkedin: "https://www.linkedin.com/in/chris-aument/",
+      key: 3,
+    },
+    {
+      src: { yahya },
+      altText: "Project Manager",
+      caption: "Yahya Ahmed",
+      github: "https://github.com/yiahmed",
+      linkedin: "https://www.linkedin.com/in/yahyaiahmed/",
+      key: 4,
+    },
+  ])
 
   const next = () => {
-    if (animating) return;
     const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
     setActiveIndex(nextIndex);
   };
 
   const previous = () => {
-    if (animating) return;
     const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
 
   const goToIndex = (newIndex) => {
-    if (animating) return;
     setActiveIndex(newIndex);
   };
 
   const slides = items.map((item) => {
-    
     return (
-      
-      <CarouselItem
-        onExiting={() => setAnimating(true)}
-        onExited={() => setAnimating(false)}
-        key={item.src}
+      <CarouselItem 
+        key={item.key}
       >
-        <img src={item.src} alt={item.altText} />
+        <img className="profile" src={Object.values(item.src)[0]} alt={item.altText} />
         <CarouselCaption
-          captionText={item.caption}
+          captionText={item.altText}
           captionHeader={item.caption}
         />
       </CarouselItem>
-      
     );
   });
 
   return (
-    <div className="csscarousel">
-    <Carousel
-      activeIndex={activeIndex}
-      next={next}
-      previous={previous}
-      {...args}
-    >
-      <CarouselIndicators
-        items={items}
-        activeIndex={activeIndex}
-        onClickHandler={goToIndex}
-      />
-      {slides}
-      <CarouselControl
-        direction="prev"
-        directionText="Previous"
-        onClickHandler={previous}
-      />
-      <CarouselControl
-        direction="next"
-        directionText="Next"
-        onClickHandler={next}
-      />
-    </Carousel>
+    <div className="content-wrap">
+      <div className="about-page">
+        <div className="csscarousel">
+          <Carousel
+            activeIndex={activeIndex}
+            next={next}
+            previous={previous}
+          >
+            <CarouselIndicators
+              items={items}
+              activeIndex={activeIndex}
+              onClickHandler={goToIndex}
+            />
+            {slides}
+            <CarouselControl
+              direction="prev"
+              directionText="Previous"
+              onClickHandler={previous}
+            />
+            <CarouselControl
+              direction="next"
+              directionText="Next"
+              onClickHandler={next}
+            />
+          </Carousel>
+        </div>
+        <div className="credentials">
+          {<a href={items[activeIndex].github} target='_blank'> <img src={github} alt='github' className='icon' /></a>}
+          {<a href={items[activeIndex].linkedin} target='_blank'> <img src={linkedin} alt='linkedin' className='icon' /></a>}
+          {<a href={""} target='_blank'> <img src={resume} alt='resume' className='icon' /></a>}
+        </div>
+      </div>
     </div>
   );
-}
-
-export default Example;
+};
+export default About

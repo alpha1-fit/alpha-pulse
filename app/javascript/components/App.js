@@ -1,20 +1,20 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import React, { useEffect, useState, } from 'react'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import About from './pages/About'
-import Home from './pages/Home'
-import NotFound from './pages/NotFound'
-import IndexWorkouts from './pages/IndexWorkouts'
-import CreateWorkout from './pages/CreateWorkout'
-import EditWorkout from './pages/EditWorkout'
-import ShowWorkout from './pages/ShowWorkout'
-import IndexComments from './pages/IndexComments'
-import CreateComment from './pages/CreateComment'
-import EditComment from './pages/EditComment'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import About from "./pages/About";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import IndexWorkouts from "./pages/IndexWorkouts";
+import CreateWorkout from "./pages/CreateWorkout";
+import EditWorkout from "./pages/EditWorkout";
+import ShowWorkout from "./pages/ShowWorkout";
+import IndexComments from "./pages/IndexComments";
+import CreateComment from "./pages/CreateComment";
+import EditComment from "./pages/EditComment";
 
 const App = (props) => {
-  const [workouts, setWorkouts] = useState([])
+  const [workouts, setWorkouts] = useState([]);
   useEffect(() => {
     readWorkouts()
   }, [])
@@ -63,7 +63,7 @@ const App = (props) => {
       .catch((errors) => console.log("delete errors:", errors))
   }
   return (
-    <div className='page'>
+    <div className="page-container">
       <BrowserRouter>
         <Header {...props} />
         <Routes>
@@ -83,6 +83,5 @@ const App = (props) => {
     </div>
   )
 }
-
 
 export default App
