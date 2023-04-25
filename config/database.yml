@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
   database: alpha_pulse_production
   username: alpha_pulse
   password: <%= ENV["ALPHA_PULSE_DATABASE_PASSWORD"] %>
