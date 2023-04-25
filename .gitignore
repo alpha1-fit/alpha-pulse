@@ -39,3 +39,6 @@ yarn-debug.log*
 
 # Ignore test data
 /coverage
+
+# Ignore DS Store
+.DS_Store
