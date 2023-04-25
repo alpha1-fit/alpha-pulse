@@ -34,7 +34,7 @@
     },
     "testEnvironment": "jsdom",
     "roots": [
-      "app/javascript/components"
+      "app/javascript"
     ]
   }
 }
