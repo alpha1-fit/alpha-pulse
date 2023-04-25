@@ -5,8 +5,6 @@ comment1 = Comment.create(title: 'Terminator', comment: 'Ill be back...', workou
 comment2 = Comment.create(title: 'Trunk', comment: 'Ill remember this workout!', workout_id: 1,user_id: 2)
 comment3 = Comment.create(title: 'Zen', comment: 'what a great stretch!', workout_id: 1,user_id: 3)
 
-
-
 user1_workouts = [
     {
         name: 'Arnold',
