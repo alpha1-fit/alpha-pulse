@@ -19,11 +19,6 @@ const App = (props) => {
     readWorkouts()
   }, [])
 
-  const [comments, setComments] = useState([])
-  useEffect(() => {
-    readComments()
-  }, [])
-
   const readWorkouts = () => {
     fetch("/workouts")
     .then((response) => response.json())
@@ -44,14 +39,6 @@ const App = (props) => {
       .then((payload) => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
   }
-
-  const readComments = () => {
-    fetch("/comments")
-    .then((response) => response.json())
-    .then((payload) => setComments(payload))
-    .catch((error) => console.log(error))
-  }
-
    const updateWorkout = (workout, id) => {
     fetch(`/workouts/${id}`, {
       body: JSON.stringify(workout),
@@ -64,7 +51,17 @@ const App = (props) => {
       .then((payload) => readWorkouts(payload))
       .catch((errors) => console.log("workout update errors:", errors));
   }
-  
+  const deleteWorkout = (id) => {
+    fetch(`/workouts/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then((payload) => readWorkout())
+      .catch((errors) => console.log("delete errors:", errors))
+  }
   return (
     <div className="page-container">
       <BrowserRouter>
@@ -74,9 +71,9 @@ const App = (props) => {
           <Route path='/about' element={<About />} />
           <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
-          <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts}/>} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts} deleteWorkout={deleteWorkout}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
-          <Route path='/commentindex' element={<IndexComments {...props} comments={comments}/>} />
+          <Route path='/commentindex' element={<IndexComments />} />
           <Route path='/commentnew' element={<CreateComment />} />
           <Route path='/commentedit/:id' element={<EditComment />} />
           <Route path='*' element={<NotFound />} />
