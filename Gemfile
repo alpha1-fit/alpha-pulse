@@ -74,3 +74,5 @@ gem "devise", "~> 4.9"
 gem "bootstrap", "~> 5.2"
 
 gem "rspec-rails", "~> 6.0"
+
+gem 'simplecov', require: false, group: :test
