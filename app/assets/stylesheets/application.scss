@@ -6,8 +6,8 @@
   --accent-color-1: #9bffff;
   --accent-color-2: #fe9176;
   --accent-color-3: #ffb7e9;
+  --header-height: 5vh;
   --footer-height: 2.5rem;
-  padding: 110px 350px 28px 45px;
 }
 
 .header {
@@ -24,22 +24,30 @@
   font-weight: lighter;
   font-size: 20px;
   font-family: sans-serif;
-  height: 40px;
-  margin: 0;
+  height: var(--header-height)
+}
+
+.logo {
+  max-height: 5vh;
+  max-width: 5vw;
 }
 
 .page-container {
   position: relative;
   min-height: 100vh;
+  width: 100vw;
+  background-color: var(--base-color);
 }
 
 .content-wrap {
-  min-height: 100vh;
+  padding-top: var(--header-height);
+  min-height: 95vh;
   padding-bottom: var(--footer-height);
+  display: flex;
 }
 
 .footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
   height: var(--footer-height);
@@ -53,6 +61,7 @@
   font-size: 20px;
   font-family: sans-serif;
 }
+
 @media (max-height: 600px) {
   .footer {
     position: static;
@@ -61,24 +70,59 @@
 
 .home,
 h2 {
-  color: #9bffff;
+  color: var(--accent-color-1);
   display: center;
 }
-.content {
-  display: center;
-  margin-left: auto;
-  margin-right: auto;
-  background-color: #151318;
-}
+
 .hometext {
   text-align: center;
   color: #9bffff;
 }
+
+.about-page {
+  background-color: var(--base-color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 90vh;
+  width: 100vw;
+  color: var(--accent-color-3);
+}
+
 .csscarousel {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.carousel-caption {
+  color: var(--mid-color)
+}
+
+.profile {
+  object-fit: contain;
+  width: 90vw;
+  height: 90vh;
+  align-self: center;
+  margin: auto;
+}
+
+.credentials {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  gap: 2em;
+  justify-content: center;
+}
+
+.icon {
+  height: 5vh;
+  width: 5vw;
+  object-fit: contain;
+  filter: invert(99%) sepia(51%) saturate(6452%) hue-rotate(161deg) brightness(107%) contrast(104%);
+}
+
+.icon:hover {
+  filter: invert(93%) sepia(97%) saturate(5837%) hue-rotate(280deg) brightness(107%) contrast(105%);
 }
 
 .Indexpage {

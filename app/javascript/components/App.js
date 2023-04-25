@@ -26,7 +26,7 @@ const App = (props) => {
       .catch((error) => console.log(error));
   };
   return (
-    <div className="page">
+    <div className="page-container">
       <BrowserRouter>
         <Header {...props} />
         <Routes>

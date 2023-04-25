@@ -1,11 +1,13 @@
-import React, {useState} from 'react'
-import { Nav,
+import React, { useState } from 'react'
+import {
+  Nav,
   NavItem,
   Collapse,
   Navbar,
   NavbarToggler,
   NavbarBrand,
-  NavbarText,} from 'reactstrap'
+  NavbarText,
+} from 'reactstrap'
 import { NavLink } from 'react-router-dom';
 import alphaPulseLogo from '../assets/PSX_20230414_155911- 1.png'
 
@@ -21,14 +23,11 @@ const Header = ({
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-  
+
   return (
     <div className='Header'>
-    <Navbar fixed="top" expand color="dark" dark>
-      <a href="/">
-        <NavItem ><img src={alphaPulseLogo} alt='AlphaPulse Logo' style={{width: '100px'}}/></NavItem>
-        </a>
-        <NavbarBrand href="/">AlphaPulse</NavbarBrand>
+      <Navbar fixed="top" expand color="dark" dark>
+        <NavbarBrand href="/"><img className="logo" src={alphaPulseLogo} alt='AlphaPulse Logo' />AlphaPulse</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
