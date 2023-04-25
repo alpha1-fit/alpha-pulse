@@ -19,6 +19,11 @@ const App = (props) => {
     readWorkouts()
   }, [])
 
+  const [comments, setComments] = useState([])
+  useEffect(() => {
+    readComments()
+  }, [])
+
   const readWorkouts = () => {
     fetch("/workouts")
     .then((response) => response.json())
@@ -39,6 +44,14 @@ const App = (props) => {
       .then((payload) => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
   }
+
+  const readComments = () => {
+    fetch("/comments")
+    .then((response) => response.json())
+    .then((payload) => setComments(payload))
+    .catch((error) => console.log(error))
+  }
+
    const updateWorkout = (workout, id) => {
     fetch(`/workouts/${id}`, {
       body: JSON.stringify(workout),
@@ -51,7 +64,7 @@ const App = (props) => {
       .then((payload) => readWorkouts(payload))
       .catch((errors) => console.log("workout update errors:", errors));
   }
-
+  
   return (
     <div className='page'>
       <BrowserRouter>
@@ -63,7 +76,7 @@ const App = (props) => {
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
           <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
-          <Route path='/commentindex' element={<IndexComments />} />
+          <Route path='/commentindex' element={<IndexComments {...props} comments={comments}/>} />
           <Route path='/commentnew' element={<CreateComment />} />
           <Route path='/commentedit/:id' element={<EditComment />} />
           <Route path='*' element={<NotFound />} />
