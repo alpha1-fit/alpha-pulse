@@ -19,6 +19,11 @@ const App = (props) => {
     readWorkouts()
   }, [])
 
+  const [comments, setComments] = useState([]);
+  useEffect(() => {
+    readComments()
+  }, [])
+
   const readWorkouts = () => {
     fetch("/workouts")
     .then((response) => response.json())
@@ -39,6 +44,7 @@ const App = (props) => {
       .then((payload) => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
   }
+
    const updateWorkout = (workout, id) => {
     fetch(`/workouts/${id}`, {
       body: JSON.stringify(workout),
@@ -51,6 +57,7 @@ const App = (props) => {
       .then((payload) => readWorkouts(payload))
       .catch((errors) => console.log("workout update errors:", errors));
   }
+
   const deleteWorkout = (id) => {
     fetch(`/workouts/${id}`, {
       headers: {
@@ -59,9 +66,56 @@ const App = (props) => {
       method: "DELETE"
     })
       .then((response) => response.json())
-      .then((payload) => readWorkout())
+      .then((payload) => readWorkouts())
       .catch((errors) => console.log("delete errors:", errors))
   }
+
+  const readComments = () => {
+    fetch("/comments")
+    .then((response) => response.json())
+    .then((payload) => setComments(payload))
+    .catch((error) => console.log(error))
+  }
+
+  const createComment = (comment) => {
+    fetch("/comments", {
+      body: JSON.stringify(comment),
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      method: "POST"
+    })
+    .then((response) => response.json())
+    .then((payload) => readComments())
+    .catch((errors) => console.log("Comment create errors:", errors))
+  }
+
+  const updateComment = (comment, id) => {
+    fetch(`/comments/${id}`, {
+      body: JSON.stringify(comment),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      method: "PATCH",
+    })
+      .then((response) => response.json())
+      .then((payload) => readComments(payload))
+      .catch((errors) => console.log("Comment update errors:", errors));
+  }
+
+  const deleteComment = (id) => {
+    fetch(`/comments/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then((response) => response.json())
+      .then((payload) => readComments())
+      .catch((errors) => console.log("delete errors:", errors))
+  }
+
   return (
     <div className="page-container">
       <BrowserRouter>
@@ -73,9 +127,9 @@ const App = (props) => {
           <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
           <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts} deleteWorkout={deleteWorkout}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
-          <Route path='/commentindex' element={<IndexComments />} />
+          <Route path='/commentindex' element={<IndexComments createComment={createComment} deleteComment={deleteComment}/>} />
           <Route path='/commentnew' element={<CreateComment />} />
-          <Route path='/commentedit/:id' element={<EditComment />} />
+          <Route path='/commentedit/:id' element={<EditComment updateComment={updateComment} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>
         <Footer />
