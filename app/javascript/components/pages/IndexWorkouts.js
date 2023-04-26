@@ -5,14 +5,24 @@ import { NavLink } from 'react-router-dom';
 import Example from '../components/DropDown';
 const IndexWorkouts = ({ logged_in, workouts }) => {
   return (
-    <div className="card">
+    
+      <>
+             <div className='buttonCreate'>
+             <Example />
+        <Button>
+          <NavLink to={`/workoutnew/new`}>Create New Workout</NavLink>
+        </Button>
+      </div>
+      <div className="fakecontent">
+      <>
       {logged_in && workouts.map((value) => (
         <Card style={{ width: '18rem' }} key={value.id}>
           <img
             src={value.image}
             alt="App Image"
           />
-          <CardBody className="Card">
+          <div className= "realcards">
+          <CardBody className="CardIndex">
             <CardTitle tag="h5">
               name: {value.name}
             </CardTitle>
@@ -30,18 +40,18 @@ const IndexWorkouts = ({ logged_in, workouts }) => {
             </CardSubtitle>
             <a href={`/workoutshow/${value.id}`}>See Details</a>
           </CardBody>
+          </div>
         </Card>
       ))}
       {!logged_in && <FakerWorkouts />}
+
+     
       <div>
-        <Button>
-          <NavLink to={`/workoutnew/new`}>Create New Workout</NavLink>
-        </Button>
       </div>
-      <div>
-      <Example />
+      </>
       </div>
-    </div>
+      </>
+    
   );
 }
 
