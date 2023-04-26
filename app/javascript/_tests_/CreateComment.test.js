@@ -39,6 +39,10 @@ describe("<CreateComment />", () => {
     )
   })
 
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   it("renders the page", () => {
   })
 
