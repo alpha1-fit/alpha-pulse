@@ -57,4 +57,9 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Add configuration for devise in testing
+  # config.middleware.use Warden::Test::ControllerHelpers, :warden => Warden::Manager.new(nil) do |manager|
+  #   Devise::Strategies.manager = manager
+  # end
 end
