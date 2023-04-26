@@ -38,7 +38,6 @@ const EditComment = ({logged_in, current_user, workout_id, comments, editComment
   }
 
   const cancelCreate = () => {
-    console.log("cancel clicked")
     navigate(`/WorkoutShow/${workout_id}`)
   }
 
@@ -53,10 +52,10 @@ const EditComment = ({logged_in, current_user, workout_id, comments, editComment
           <Label htmlFor="comment">Comment</Label>
           <Input id="comment" name="comment" placeholder="What is the comement?" type="textarea" required={true} onChange={handleChange} />
         </FormGroup>
-        <Button onClick={handleSubmit} name="submit">
+        <Button onClick={handleSubmit} name="submit-button">
               Submit
         </Button>
-        <Button onClick={cancelCreate} name="cancel">
+        <Button onClick={cancelCreate} name="cancel-button">
               Cancel
         </Button>
       </Form>
