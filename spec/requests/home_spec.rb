@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "home", type: :controller do
+RSpec.describe "Home", type: :request do
   describe "GET #index" do
     it "returns a successful response" do
-      get :index
+      get "/"
       expect(response).to have_http_status(:success)
     end
   end

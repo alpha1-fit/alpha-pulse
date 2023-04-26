@@ -7,4 +7,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :username, :photo, presence: true
   validates :username, uniqueness: true
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 end
