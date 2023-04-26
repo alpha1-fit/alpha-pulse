@@ -94,12 +94,12 @@ describe("<EditComment />", () => {
     expect(screen.getByRole('textbox', {
       name: /title/i
     }))
-      .toBeInTheDocument
+      .toBeInTheDocument()
 
     expect(screen.getByRole('textbox', {
       name: /comment/i
     }))
-      .toBeInTheDocument
+      .toBeInTheDocument()
   })
 
   it("has a button to submit", () => {
@@ -109,7 +109,7 @@ describe("<EditComment />", () => {
       screen.getByRole("button", {
         name: /submit/i,
       })
-    ).toBeInTheDocument
+    ).toBeInTheDocument()
   })
 
   it("has a button to cancel", () => {
@@ -119,7 +119,7 @@ describe("<EditComment />", () => {
       screen.getByRole("button", {
         name: /cancel/i,
       })
-    ).toBeInTheDocument
+    ).toBeInTheDocument()
   })
 
   it("submits data on button click", () => {
