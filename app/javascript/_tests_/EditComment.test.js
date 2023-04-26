@@ -203,12 +203,8 @@ describe("<EditComment />", () => {
     })
     fireEvent.click(confirmButton)
 
-    // This validation should ensure line 35 of EditComment.js
-    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
     expect(editCommentSpy).toHaveBeenCalledTimes(0)
 
-    // This validation should ensure line 36 of EditComment.js
-    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
     expect(mockUseNavigate).toHaveBeenCalledTimes(0)
   })
 
