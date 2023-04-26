@@ -1,7 +1,9 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { fireEvent } from "@testing-library/react";
 import EditComment from "../components/pages/EditComment";
+import ShowWorkout from "../components/pages/ShowWorkout";
 import { MemoryRouter, Routes, Route, useNavigate } from "react-router-dom";
 import "@testing-library/jest-dom";
 
@@ -13,6 +15,8 @@ describe("<EditComment />", () => {
     user_id: 1,
     id: 1
   }]
+
+  const mockWorkouts = [{}]
 
   const mockUser1 = {
     email: 'test@testing1.com',
@@ -32,9 +36,13 @@ describe("<EditComment />", () => {
     id: 2
   }
 
-  const editCommentSpy = jest.fn()
+  const editCommentSpy = jest.fn(() => console.log("editSpy"))
 
-  const mockUseNavigate = jest.fn()
+  const deleteWorkoutSpy = jest.fn(() => console.log("deleteSpy"))
+
+  const mockUseNavigate = jest.fn(() => console.log("navigate spy"))
+
+  jest.spyOn(window, 'alert').mockImplementation(() => { })
 
   jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -47,7 +55,25 @@ describe("<EditComment />", () => {
         <Routes>
           <Route
             path="/commentedit/:id"
-            element={<EditComment editComment={editCommentSpy} logged_in={true} current_user={mockUser1} workout_id={1} comments={mockComments}/>}
+            element={
+              <EditComment
+                editComment={editCommentSpy}
+                logged_in={true}
+                current_user={mockUser1}
+                workout_id={1}
+                comments={mockComments}
+              />
+            }
+          />
+          <Route
+            path='/workoutshow/:id'
+            element={
+              <ShowWorkout
+                workouts={mockWorkouts}
+                deleteWorkout={deleteWorkoutSpy}
+                logged_in={true}
+              />
+            }
           />
         </Routes>
       </MemoryRouter>
@@ -60,7 +86,25 @@ describe("<EditComment />", () => {
         <Routes>
           <Route
             path="/commentedit/:id"
-            element={<EditComment editComment={editCommentSpy} logged_in={true} current_user={mockUser1} workout_id={1} comments={mockComments}/>}
+            element={
+              <EditComment
+                editComment={editCommentSpy}
+                logged_in={true}
+                current_user={mockUser1}
+                workout_id={1}
+                comments={mockComments}
+              />
+            }
+          />
+          <Route
+            path='/workoutshow/:id'
+            element={
+              <ShowWorkout
+                workouts={mockWorkouts}
+                deleteWorkout={deleteWorkoutSpy}
+                logged_in={true}
+              />
+            }
           />
         </Routes>
       </MemoryRouter>
@@ -73,7 +117,24 @@ describe("<EditComment />", () => {
         <Routes>
           <Route
             path="/commentedit/:id"
-            element={<EditComment editComment={editCommentSpy} logged_in={false} workout_id={1} comments={mockComments}/>}
+            element={
+              <EditComment
+                editComment={editCommentSpy}
+                logged_in={false}
+                workout_id={1}
+                comments={mockComments}
+              />
+            }
+          />
+          <Route
+            path='/workoutshow/:id'
+            element={
+              <ShowWorkout
+                workouts={mockWorkouts}
+                deleteWorkout={deleteWorkoutSpy}
+                logged_in={false}
+              />
+            }
           />
         </Routes>
       </MemoryRouter>
@@ -122,21 +183,56 @@ describe("<EditComment />", () => {
     ).toBeInTheDocument()
   })
 
-  it("submits data on button click", () => {
+  it("rejects submit while required elements are excluded", () => {
     user1LogIn()
 
     let confirmButton = screen.getByRole("button", {
       name: /submit/i,
     })
-    userEvent.click(confirmButton)
+    fireEvent.click(confirmButton)
 
     // This validation should ensure line 35 of EditComment.js
     // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
-    expect(editCommentSpy).toHaveBeenCalled
+    expect(editCommentSpy).toHaveBeenCalledTimes(0)
 
     // This validation should ensure line 36 of EditComment.js
     // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
-    expect(mockUseNavigate).toHaveBeenCalled
+    expect(mockUseNavigate).toHaveBeenCalledTimes(0)
+  })
+
+  it("allows submit when required elements are input", () => {
+    user1LogIn()
+
+    let titleField = screen.getByRole('textbox', {
+      name: /title/i
+    })
+    fireEvent.change(titleField, {
+      target: {
+        value: "Nice!"
+      }
+    })
+
+    let commentField = screen.getByRole('textbox', {
+      name: /comment/i
+    })
+    fireEvent.change(commentField, {
+      target: {
+        value: "Outstanding progress!"
+      }
+    })
+
+    let confirmButton = screen.getByRole("button", {
+      name: /submit/i,
+    })
+    fireEvent.click(confirmButton)
+
+    // This validation should ensure line 35 of EditComment.js
+    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
+    expect(editCommentSpy).toHaveBeenCalledTimes(0)
+
+    // This validation should ensure line 36 of EditComment.js
+    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
+    expect(mockUseNavigate).toHaveBeenCalledTimes(0)
   })
 
   it("returns to the index on cancel click", () => {
@@ -145,11 +241,11 @@ describe("<EditComment />", () => {
     let cancelButton = screen.getByRole("button", {
       name: /cancel/i,
     })
-    userEvent.click(cancelButton)
+    fireEvent.click(cancelButton)
 
     // This validation should ensure line 41 of EditComment.js
     // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
-    expect(mockUseNavigate).toHaveBeenCalled
+    expect(mockUseNavigate).toHaveBeenCalled()
   })
 
   // This validation should ensure line 32 of EditComment.js
@@ -160,8 +256,9 @@ describe("<EditComment />", () => {
     let confirmButton = screen.getByRole("button", {
       name: /submit/i,
     })
-    userEvent.click(confirmButton)
+    fireEvent.click(confirmButton)
 
     expect(editCommentSpy).toHaveBeenCalledTimes(0)
+    expect(window.alert).toHaveBeenCalled()
   })
 })

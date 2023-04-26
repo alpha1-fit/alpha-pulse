@@ -29,7 +29,7 @@ const EditComment = ({logged_in, current_user, workout_id, comments, editComment
   }
 
   const handleSubmit = () => {
-    if(current_user.id != currentComment.user_id){
+    if(current_user.id != newComment.user_id){
       alert("Please only edit your comments")
     }else{
       editComment(newComment)
@@ -38,6 +38,7 @@ const EditComment = ({logged_in, current_user, workout_id, comments, editComment
   }
 
   const cancelCreate = () => {
+    console.log("cancel clicked")
     navigate(`/WorkoutShow/${workout_id}`)
   }
 
