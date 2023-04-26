@@ -76,7 +76,12 @@ describe("<CreateComment />", () => {
     })
     userEvent.click(confirmButton)
 
+    // This validation should ensure line 19 of CreateComment.js
+    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
     expect(createCommentSpy).toHaveBeenCalled
+
+    // This validation should ensure line 20 of CreateComment.js
+    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
     expect(mockUseNavigate).toHaveBeenCalled
   })
 
@@ -86,6 +91,8 @@ describe("<CreateComment />", () => {
     })
     userEvent.click(cancelButton)
 
+    // This validation should ensure line 24 of CreateComment.js
+    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
     expect(mockUseNavigate).toHaveBeenCalled
   })
 })
