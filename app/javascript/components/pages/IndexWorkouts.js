@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import FakerWorkouts from './FakerWorkouts';
 import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
-import Example from '../components/DropDown';
-const IndexWorkouts = ({ logged_in, workouts }) => {
+import Toggle from '../components/DropDown';
+
+const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
+  const [filteredWorkouts, setFilteredWorkouts] = useState(workouts);
+
+  const filterWorkouts = (userId) => {
+    if (userId === "all") {
+      setFilteredWorkouts(workouts);
+    } else {
+      const filteredWorkouts = workouts.filter(workout => workout.user_id === userId);
+      setFilteredWorkouts(filteredWorkouts);
+    }
+  };
+
   return (
     <div className="card">
-      {logged_in && workouts.map((value) => (
+      {logged_in && filteredWorkouts.map((value) => (
         <Card style={{ width: '18rem' }} key={value.id}>
           <img
             src={value.image}
@@ -39,10 +51,14 @@ const IndexWorkouts = ({ logged_in, workouts }) => {
         </Button>
       </div>
       <div>
-      <Example />
+        <Toggle
+          loggedIn={logged_in}
+          currentUser={current_user}
+          filterWorkouts={filterWorkouts}
+        />
       </div>
     </div>
   );
-}
+};
 
 export default IndexWorkouts;

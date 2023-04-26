@@ -1,55 +1,40 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
-ButtonDropdown.propTypes = {
-  disabled: PropTypes.bool,
-  direction: PropTypes.oneOf(['up', 'down', 'left', 'right']),
-  group: PropTypes.bool,
-  isOpen: PropTypes.bool,
-  tag: PropTypes.string,
-  toggle: PropTypes.func
+const Toggle = ({ loggedIn, currentUser, filterWorkouts }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState("all");
+
+  const toggle = () => setDropdownOpen(!dropdownOpen);
+
+  const handleFilterChange = (userId) => {
+    setSelectedFilter(userId);
+    filterWorkouts(userId);
+  };
+
+  return (
+    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+      <DropdownToggle caret>
+        {selectedFilter === "all" ? "All Workouts" : "My Workouts"}
+      </DropdownToggle>
+      <DropdownMenu>
+        <DropdownItem
+          onClick={() => handleFilterChange("all")}
+          active={selectedFilter === "all"}
+        >
+          All Workouts
+        </DropdownItem>
+        {loggedIn && (
+          <DropdownItem
+            onClick={() => handleFilterChange(currentUser.id)}
+            active={selectedFilter === currentUser.id}
+          >
+            My Workouts
+          </DropdownItem>
+        )}
+      </DropdownMenu>
+    </Dropdown>
+  );
 };
 
-DropdownToggle.propTypes = {
-  caret: PropTypes.bool,
-  color: PropTypes.string,
-  disabled: PropTypes.bool,
-  onClick: PropTypes.func,
-  'data-toggle': PropTypes.string,
-  'aria-haspopup': PropTypes.bool
-};
-
-export default class Example extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.toggle = this.toggle.bind(this);
-    this.state = {
-      dropdownOpen: false
-    };
-  }
-
-  toggle() {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
-  }
-
-  render() {
-    return (
-      <ButtonDropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-        αWorkoutsα
-        </DropdownToggle>
-        <DropdownMenu>
-          <DropdownItem><NavLink to = {`/workoutindex`}>All Workouts</NavLink></DropdownItem>
-          <DropdownItem><NavLink to = {`/`}>Home</NavLink></DropdownItem>
-          <DropdownItem divider />
-          
-        </DropdownMenu>
-      </ButtonDropdown>
-    );
-  }
-} 
+export default Toggle;
