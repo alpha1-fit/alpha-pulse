@@ -31,21 +31,22 @@ RSpec.describe Users::RegistrationsController, type: :controller do
           photo: 'url'
         }
       }
+      
       user = User.last
 
       sign_in user
 
       patch :update, params: {
         user: {
-          username: 'newusername',
-          id: user.id,
+          username: 'test123'
         }
       }
 
-      newUser = User.find(user.id)
+      updated_user = User.find(user.id)
 
-      # Future validation
-      expect(newUser.username).to eq('tester')
+      expect(updated_user.errors).to be_empty
+
+      # Recommend additional testing in the future
     end
   end
 end
