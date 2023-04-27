@@ -15,8 +15,8 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
       setFilteredWorkouts(filteredWorkouts);
     }
   };
-
   return (
+  <div className="fakecontent">
     <div className="card">
       {logged_in && filteredWorkouts.map((value) => (
         <Card style={{ width: '18rem' }} key={value.id}>
@@ -24,7 +24,8 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
             src={value.image}
             alt="App Image"
           />
-          <CardBody className="Card">
+          <div className="realcards">
+          <CardBody className="CardIndex">
             <CardTitle tag="h5">
               name: {value.name}
             </CardTitle>
@@ -42,13 +43,15 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
             </CardSubtitle>
             <a href={`/workoutshow/${value.id}`}>See Details</a>
           </CardBody>
+          </div>
         </Card>
       ))}
       {!logged_in && <FakerWorkouts />}
-      <div>
+      <div className="buttonCreate">
         <Button>
           <NavLink to={`/workoutnew/new`}>Create New Workout</NavLink>
         </Button>
+      </div>
       </div>
       <div>
         <Toggle
@@ -57,7 +60,7 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
           filterWorkouts={filterWorkouts}
         />
       </div>
-    </div>
+    </>
   );
 };
 

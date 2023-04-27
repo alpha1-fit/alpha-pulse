@@ -54,11 +54,14 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
   
   return (
     <>
-      <h1 className='new-header'>Are you ready to become Alpha?</h1>
+    <h2 className='new-header'>Are you ready to become Alpha?</h2>
+    <div className='create-content'>
       <Form>
         <FormGroup>
           <Label for="name">
+            <div className='text-color-create'>
             Workout Name
+            </div>
           </Label>
             <Input
               name="name"
@@ -71,7 +74,9 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
         
         <FormGroup>
           <Label for="workout_type">
+          <div className='text-color-create'>
             Workout Type
+            </div>
           </Label>
             <Input
               name="workout_type"
@@ -84,7 +89,9 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
         
         <FormGroup>
           <Label for="duration">
+          <div className='text-color-create'>
             Duration
+            </div>
           </Label>
             <Input
               name="duration"
@@ -97,7 +104,9 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
 
         <FormGroup>
           <Label for="schedule">
+          <div className='text-color-create'>
             Schedule
+            </div>
           </Label>
             <Input
               name="schedule_date"
@@ -117,7 +126,9 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
 
         <FormGroup>
           <Label for="description">
+          <div className='text-color-create'>
             Description
+            </div>
           </Label>
             <Input
               name="description"
@@ -135,6 +146,7 @@ const CreateWorkout = ({ logged_in, current_user, createWorkout }) => {
               Cancel
         </Button>
       </Form>
+      </div>
     </>
   )
 }
