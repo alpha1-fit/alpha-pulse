@@ -6,7 +6,6 @@ const SignIn = ({ newSession, toggle }) => {
     email: "",
     password: "",
   })
-  const [remember, setRemember] = useState(false)
 
   const handleChange = (e) => {
     setSessionUser({...sessionUser, [e.target.name]: e.target.value })
