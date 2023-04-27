@@ -16,7 +16,6 @@ const Header = ({toggleSignUp, logged_in, sign_in_route, sign_out_route}) => {
   const toggle = () => setIsOpen(!isOpen);
 
   const signUpClick = () => {
-    console.log({header: "click"})
     toggleSignUp()
   }
 
