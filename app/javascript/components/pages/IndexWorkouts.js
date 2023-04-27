@@ -60,7 +60,7 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
           filterWorkouts={filterWorkouts}
         />
       </div>
-    </>
+    </div>
   );
 };
 
