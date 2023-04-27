@@ -38,11 +38,9 @@ const App = (props) => {
   }
 
   const createUser = (user) => {
-    // const token = document.querySelector('meta[name="csrf-token"]').content
     fetch('/users/signup', {
       body: JSON.stringify(user),
       headers: {
-        // "X-CSRF-Token": token,
         "Content-Type": "application/json"
       },
       
