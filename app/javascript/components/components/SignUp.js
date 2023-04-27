@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { FormGroup, Label, Input, Form, Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap"
 
 const SignUp = ({ createUser, toggle }) => {
+
   const [newUser, setNewUser] = useState({
     email: "",
     username: "",
