@@ -234,6 +234,9 @@ h2 {
   align-items: baseline;
   justify-content: space-evenly;
   position: relative;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 3em;
 }
 
 .buttonCreate {
