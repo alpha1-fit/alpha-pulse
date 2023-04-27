@@ -11,9 +11,8 @@ import {
 
 const FakerWorkouts = () => {
   return (
-    <div className="fakecontent">
+    <div className="fakercontent">
       <>
-        {/* <h1>Workouts!</h1> */}
         {fakeWorkouts.map((value, index) => {
           return (
             <Card style={{ width: "18rem" }} key={index}>
