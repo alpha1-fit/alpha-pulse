@@ -3,6 +3,7 @@
 class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
+  respond_to :json
 
   # GET /resource/sign_up
   # def new
@@ -10,13 +11,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    user = User.create(sign_up_params)
+    if user.valid?
+      render json: user
+      sign_in(:user, user)
+    else
+      render json: user.errors, status: 422
+    end
+  end
 
   # GET /resource/edit
   # def edit
-  #   super
+  #   supers
   # end
 
   # PUT /resource

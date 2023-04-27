@@ -12,6 +12,7 @@ import ShowWorkout from "./pages/ShowWorkout";
 import IndexComments from "./pages/IndexComments";
 import CreateComment from "./pages/CreateComment";
 import EditComment from "./pages/EditComment";
+import SignUp from "./components/SignUp";
 
 const App = (props) => {
   const [workouts, setWorkouts] = useState([]);
@@ -23,6 +24,32 @@ const App = (props) => {
   useEffect(() => {
     readComments()
   }, [])
+
+  const [showSignUp, setShowSignUp] = useState(false)
+
+  const [showUpdateUser, setShowUpdateUser] = useState(false)
+
+  const toggleShowSignUp = () => {
+    setShowSignUp(!showSignUp)
+  }
+
+  const toggleUpdateUser = () => {
+    setShowUpdateUser(!showUpdateUser)
+  }
+
+  const createUser = (user) => {
+    fetch('/users/signup', {
+      body: JSON.stringify(user),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      
+      method: "POST"
+    })
+      .then((response) => response.json())
+      .then(data => console.log(data))
+      .catch((errors) => console.log("User create errors:", errors))
+  }
 
   const readWorkouts = () => {
     fetch("/workouts")
@@ -118,8 +145,9 @@ const App = (props) => {
 
   return (
     <div className="page-container">
+      {showSignUp && <SignUp createUser={createUser} toggle={toggleShowSignUp} />}
       <BrowserRouter>
-        <Header {...props} />
+        <Header logged_in={props.logged_in} toggleSignUp={toggleShowSignUp} sign_in_route={props.sign_in_route} sign_out_route={props.sign_out_route}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
