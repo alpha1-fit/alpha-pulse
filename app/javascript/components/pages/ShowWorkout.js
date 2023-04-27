@@ -31,7 +31,7 @@ const ShowWorkout = ({ workouts, logged_in, deleteWorkout }) => {
 
   return (
     <div className="workout-show-align">
-      {selectedWorkout && (
+      {logged_in && selectedWorkout && (
         <Card
           className="workout-show"
           style={{
