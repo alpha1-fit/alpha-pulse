@@ -11,12 +11,16 @@ import {
 import { NavLink } from "react-router-dom";
 import alphaPulseLogo from "../assets/PSX_20230414_155911- 1.png";
 
-const Header = ({toggleSignUp, logged_in, sign_in_route, sign_out_route}) => {
+const Header = ({toggleSignUp, toggleSignIn, logged_in, sign_out_route}) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
   const signUpClick = () => {
     toggleSignUp()
+  }
+
+  const signInClick = () => {
+    toggleSignIn()
   }
 
   return (
@@ -47,7 +51,7 @@ const Header = ({toggleSignUp, logged_in, sign_in_route, sign_out_route}) => {
               <>
                 <div className="navitem">
                   <NavItem>
-                    <a href={sign_in_route}>Sign In</a>
+                    <a onClick={signInClick}>Sign In</a>
                   </NavItem>
                 </div>
                 <div className="navitem">
