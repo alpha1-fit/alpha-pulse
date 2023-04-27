@@ -10,7 +10,7 @@ const IndexComments = ({ logged_in, current_user, workout_id = 1, comments }) =>
   }
 
   return (
-    <div className="card">
+    <div className="content">
       {logged_in && comments.map((comment, index) => {
         return (
           <Card style={{ width: '18rem' }} key={index}>
@@ -28,10 +28,10 @@ const IndexComments = ({ logged_in, current_user, workout_id = 1, comments }) =>
                 user: {comment.user_id}
               </CardSubtitle>
               {current_user.id == comment.user_id &&
-              <>
-                <Button><NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink></Button>
-                <Button onClick={handleDelete}>Delete</Button>
-              </>}
+                <>
+                  <Button><NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink></Button>
+                  <Button onClick={handleDelete}>Delete</Button>
+                </>}
             </CardBody>
           </Card>
         )
