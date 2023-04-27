@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :comments
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :username, :photo, presence: true
+  validates :username, presence: true
   validates :username, uniqueness: true
+  validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 end
