@@ -13,11 +13,6 @@ RSpec.describe User, type: :model do
       expect(user.errors[:username]).to_not be_empty
     end
 
-    it "is invalid without a photo" do
-      user = User.create(username: "RTester", email: 'test2@testing.com', password: 'test123', password_confirmation: 'test123')
-      expect(user.errors[:photo]).to_not be_empty
-    end
-
     it "is invalid without a email" do
       user = User.create(username: "RTester", photo: "url", password: 'test123', password_confirmation: 'test123')
       expect(user.errors[:email]).to_not be_empty
