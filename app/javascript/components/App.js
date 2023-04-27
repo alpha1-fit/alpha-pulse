@@ -56,7 +56,10 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        window.location.href = "/" // Works!
+      })
       .catch((errors) => console.log("User create errors:", errors))
   }
 
@@ -70,7 +73,10 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        window.location.href = "/" // Not working
+      })
       .catch((errors) => console.log("Session errors:", errors))
   }
   
@@ -82,7 +88,10 @@ const App = (props) => {
       method: "GET"
     })
       .then((response) => response.json())
-      .then(data => console.log(data))
+      .then(data => {
+        console.log(data)
+        window.location.href = "/" // Works!
+      })
       .catch((errors) => console.log("delete errors:", errors))
   }
 
