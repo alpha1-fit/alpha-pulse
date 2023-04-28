@@ -23,45 +23,46 @@ const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) 
 
   return (
     <>
-    <div className="buttonCreate">
-    <Toggle
+      <div className="buttonCreate">
+        <Toggle
           loggedIn={logged_in}
           currentUser={current_user}
           filterWorkouts={filterWorkouts}
         />
- <br></br>
-  <div className="fakecontent">
-    <div className="card">
-      {filteredWorkouts.map((value) => (
-        <Card style={{ width: '18rem' }} key={value.id}>
-          <div className="realcards">
-          <CardBody className="CardIndex">
-            <CardTitle tag="h5">
-              name: {value.name}
-            </CardTitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              <div className="description">workout_type: {value.workout_type}</div>
-            </CardSubtitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              <div className="description">duration: {value.duration}</div>
-            </CardSubtitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              <div className="description">schedule: {value.schedule}</div>
-            </CardSubtitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
-              <div className="description">description: {value.description}</div>
-            </CardSubtitle>
-            <NavLink to={`/workoutshow/${value.id}`}>See Details</NavLink>
-          </CardBody>
+        <br></br>
+        <div className="fakecontent">
+          <div className="card">
+            {filteredWorkouts.map((value) => (
+              <Card style={{ width: '18rem' }} key={value.id}>
+                <div className="realcards">
+                  <CardBody className="CardIndex">
+                    <CardTitle tag="h5">
+                      name: {value.name}
+                    </CardTitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      <div className="description">workout_type: {value.workout_type}</div>
+                    </CardSubtitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      <div className="description">duration: {value.duration}</div>
+                    </CardSubtitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      <div className="description">schedule: {value.schedule}</div>
+                    </CardSubtitle>
+                    <CardSubtitle className="mb-2 text-muted" tag="h6">
+                      <div className="description">description: {value.description}</div>
+                    </CardSubtitle>
+                    <NavLink to={`/workoutshow/${value.id}`}>See Details</NavLink>
+                  </CardBody>
+                </div>
+              </Card>
+            ))}
+            <div className="buttonCreate">
+              <Button onClick={newWorkoutClick}>Create New Workout</Button>
+            </div>
           </div>
-        </Card>
-        
-      ))}
-      <div className="buttonCreate">
-        <Button onClick={newWorkoutClick}>Create New Workout</Button>
+        </div>
       </div>
-      </div>
-  </>
+    </>
   );
 };
 
