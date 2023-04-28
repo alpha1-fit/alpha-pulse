@@ -40,14 +40,16 @@ const ShowWorkout = ({ workouts, logged_in, deleteWorkout }) => {
           }}
         >
           <CardBody>
+            <div className="realcard-title">
             <CardTitle tag="h5">{selectedWorkout.name}</CardTitle>
+            </div>
             <CardSubtitle className="mb-2 text-muted" tag="h6">
               Workout_type: {selectedWorkout.workout_type}
             </CardSubtitle>
             <CardText>Duration: {selectedWorkout.duration}</CardText>
             <CardText>Schedule: {selectedWorkout.schedule}</CardText>
             <CardText>Description: {selectedWorkout.description}</CardText>
-            <Button>
+            <Button className="navlink-button">
               <NavLink
                 to={`/WorkoutEdit/${selectedWorkout.id}/edit`}
                 className="nav-link"
@@ -55,7 +57,8 @@ const ShowWorkout = ({ workouts, logged_in, deleteWorkout }) => {
                 Edit a Workout
               </NavLink>
             </Button>
-            <Button onClick={handleDelete}>Delete Workout Profile</Button>
+            <br></br>
+            <Button className="deletebutton" onClick={handleDelete}>Delete Workout Profile</Button>
           </CardBody>
         </Card>
       )}
@@ -68,10 +71,12 @@ const ShowWorkout = ({ workouts, logged_in, deleteWorkout }) => {
           }}
         >
           <CardBody>
+            <div className="show-title">
             <CardTitle tag="h5">{fakeSelectedWorkout.name}</CardTitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
+            </div>
+            <CardText>
               Workout_type: {fakeSelectedWorkout.workout_type}
-            </CardSubtitle>
+            </CardText>
             <CardText>Duration: {fakeSelectedWorkout.duration}</CardText>
             <CardText>Schedule: {fakeSelectedWorkout.schedule}</CardText>
             <CardText>Description: {fakeSelectedWorkout.description}</CardText>
