@@ -12,6 +12,8 @@ const toggleSignInSpy = jest.fn()
 
 const toggleSignUpSpy = jest.fn()
 
+const toggleNewWorkoutSpy = jest.fn()
+
 const signOutSpy = jest.fn()
 
 const mockUseNavigate = jest.fn()
@@ -25,7 +27,7 @@ describe("<Header />", () => {
   const loggedInRender = () => {
     render(
       <MemoryRouter>
-        <Header toggleSignIn={toggleSignInSpy} toggleSignUp={toggleSignUpSpy} logout={signOutSpy} logged_in={true} />
+        <Header toggleSignIn={toggleSignInSpy} toggleSignUp={toggleSignUpSpy} logout={signOutSpy} toggleNewWorkout={toggleNewWorkoutSpy} logged_in={true} />
         <Routes>
           <Route path="/"
             element={<Home />}
@@ -41,7 +43,7 @@ describe("<Header />", () => {
   const loggedOutRender = () => {
     render(
       <MemoryRouter>
-        <Header toggleSignIn={toggleSignInSpy} toggleSignUp={toggleSignUpSpy} logout={signOutSpy} logged_in={false} />
+        <Header toggleSignIn={toggleSignInSpy} toggleSignUp={toggleSignUpSpy} logout={signOutSpy} toggleNewWorkout={toggleNewWorkoutSpy} logged_in={false} />
         <Routes>
           <Route path="/"
             element={<Home />}
@@ -71,11 +73,13 @@ describe("<Header />", () => {
 
     expect(logo).toBeInTheDocument
 
-    let createLink = screen.getByRole('link', {
-      name: /create workouts/i
-    })
+    let createLink = screen.getByText(/create workout/i)
 
     expect(createLink).toBeInTheDocument
+
+    fireEvent.click(createLink)
+
+    expect(toggleNewWorkoutSpy).toHaveBeenCalled()
 
     let logoutLink = screen.getByText(/sign out/i)
 
