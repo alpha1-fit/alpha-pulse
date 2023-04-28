@@ -16,7 +16,7 @@ describe("<ShowWorkout />", () => {
         </Routes>
       </MemoryRouter>
     );
-    screen.logTestingPlaygroundURL();
+
     expect(<ShowWorkout />).toBeDefined();
   });
   it("it renders without crashing", () => {
@@ -30,7 +30,7 @@ describe("<ShowWorkout />", () => {
         </Routes>
       </MemoryRouter>
     );
-    screen.logTestingPlaygroundURL();
+
     expect(<ShowWorkout />).toBeDefined();
   });
 });
