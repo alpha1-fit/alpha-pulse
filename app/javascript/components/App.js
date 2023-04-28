@@ -75,7 +75,7 @@ const App = (props) => {
       .then((response) => response.json())
       .then(data => {
         console.log(data)
-        window.location.href = "/" // Not working
+        window.location.href = "/"
       })
       .catch((errors) => console.log("Session errors:", errors))
   }
