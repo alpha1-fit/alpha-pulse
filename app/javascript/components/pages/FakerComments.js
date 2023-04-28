@@ -6,7 +6,7 @@ const FakerComments = () => {
   return (
     <>
       <h1>Comments!</h1>
-      {fakeComments.map((comment, index) => {
+      {fakeComments.map((comment) => {
         return (
           <Card style={{ width: '18rem' }} key={comment.id}>
             <CardBody className="Cards">

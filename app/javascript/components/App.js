@@ -24,7 +24,6 @@ const App = (props) => {
   useEffect(() => {
     readComments()
   }, [])
-  console.log({app: comments})
 
   const [showSignUp, setShowSignUp] = useState(false)
 

@@ -42,17 +42,11 @@ const ShowWorkout = ({
   useEffect(() => {
     setFilteredComments(
       comments.filter((comment) => {
-        console.log({
-          comment: comment,
-          selectedWorkout: selectedWorkout,
-          logic: comment.workout_id === selectedWorkout.id,
-        });
         return comment.workout_id === selectedWorkout.id;
       })
     );
   }, [comments, selectedWorkout]);
 
-  console.log({ logged_in: logged_in });
   return (
     <div>
       <div className="workout-show-align">

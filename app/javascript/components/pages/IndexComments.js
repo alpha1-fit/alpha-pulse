@@ -8,7 +8,6 @@ const IndexComments = ({
   comments,
 }) => {
   const handleDelete = () => {};
-  console.log({ab: comments})
   return (
     <div className="card">
       {logged_in &&
