@@ -99,8 +99,6 @@ const ShowWorkout = ({
           current_user={current_user}
           logged_in={logged_in}
         />
-      
-        {logged_in && <IndexComments comments={filteredComments} current_user={current_user} logged_in={logged_in} />}
         {!logged_in && (
         <div>
         <Card
