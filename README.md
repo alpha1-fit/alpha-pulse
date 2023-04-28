@@ -1,24 +1,26 @@
-# README
+# αlphaPulse
+![αlphaPulse Logo](/public/favicon.ico)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Overview
+Are you tired of struggling to achieve your fitness goals alone?
 
-Things you may want to cover:
+At αlpha1, we are passionate about helping you achieve your overall health, not just your physical health. We believe that working together and staying committed is the key to success.
 
-* Ruby version
+That's why we created αlphaPulse, the fitness app that connects you to your friends' and familys' workouts. With αlphaPulse, you can workout with your loved ones no matter where they are in the world, creating a sense of social interaction and accountability. Challenge yourself and others, log your sessions, and track your progress.
 
-* System dependencies
+αlphaPulse empowers everyone to pursue their fitness goals. Join us on our shared fitness journey today
 
-* Configuration
+## Features
 
-* Database creation
+### User management
 
-* Database initialization
+### Workout management
 
-* How to run the test suite
+### Comments
 
-* Services (job queues, cache servers, search engines, etc.)
+### API Endpoints
 
-* Deployment instructions
+## Running the project
 
-* ...
+## Dependencies
+* 
