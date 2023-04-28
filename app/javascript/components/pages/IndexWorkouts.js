@@ -51,12 +51,15 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
         
       ))}
       {!logged_in && <FakerWorkouts />}
-      <Button>
-      <NavLink to={`/workoutnew/new`}>Create New Workout</NavLink>
-    </Button>
-    </div>
-    </div>
-    </>
+
+      <div className="buttonCreate">
+        <Button>
+          <NavLink to={`/workoutnew/new`}>Create New Workout</NavLink>
+        </Button>
+      </div>
+      </div>
+   
+  </>
   );
 };
 
