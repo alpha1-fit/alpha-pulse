@@ -8,7 +8,7 @@ const CreateComment = ({logged_in, current_user, workout_id, createComment}) => 
     title: "",
     comment: "",
     workout_id: "",
-    user_id: current_user.id
+    user_id: current_user?.id
   })
 
   const handleChange = (e) => {
@@ -29,11 +29,11 @@ const CreateComment = ({logged_in, current_user, workout_id, createComment}) => 
       <Form>
         <FormGroup>
           <Label htmlFor="title">Title</Label>
-          <Input id="title" name="title" placeholder="What is the comement title?" type="text" required={true} onChange={handleChange} />
+          <Input id="title" name="title" placeholder="What is the comment title?" type="text" required={true} onChange={handleChange} />
         </FormGroup>
         <FormGroup>
           <Label htmlFor="comment">Comment</Label>
-          <Input id="comment" name="comment" placeholder="What is the comement?" type="textarea" required={true} onChange={handleChange} />
+          <Input id="comment" name="comment" placeholder="What is the comment?" type="textarea" required={true} onChange={handleChange} />
         </FormGroup>
         <Button onClick={handleSubmit} name="submit">
               Submit

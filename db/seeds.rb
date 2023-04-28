@@ -1,9 +1,7 @@
 user1 = User.where(email: 'test@testing1.com').first_or_create(password: 'testing123', password_confirmation: 'testing123', username: 'Dennis', photo: 'url')
 user2 = User.where(email: 'test2@testing2.com').first_or_create(password: 'testing123', password_confirmation: 'testing123', username: 'Chris', photo: 'url')
 user3 = User.where(email: 'test@testing3.com').first_or_create(password: 'testing123', password_confirmation: 'testing123', username: 'Joel', photo: 'url')
-comment1 = Comment.create(title: 'Terminator', comment: 'Ill be back...', workout_id: 1,user_id: 1)
-comment2 = Comment.create(title: 'Trunk', comment: 'Ill remember this workout!', workout_id: 1,user_id: 2)
-comment3 = Comment.create(title: 'Zen', comment: 'what a great stretch!', workout_id: 1,user_id: 3)
+
 
 user1_workouts = [
     {
@@ -67,13 +65,20 @@ user1_workouts.each do |workout|
      user1.workouts.create(workout)
     p "Created: #{workout}"
 end
+workout1 = Workout.last
 
 user2_workouts.each do |workout|
      user2.workouts.create(workout)
     p "Created: #{workout}"
 end
+workout2 = Workout.last
 
 user3_workouts.each do |workout|
      user3.workouts.create(workout)
     p "Created: #{workout}"
 end
+workout3 = Workout.last
+
+comment1 = Comment.create(title: 'Terminator', comment: 'Ill be back...', workout_id: workout1.id,user_id: user1.id)
+comment2 = Comment.create(title: 'Trunk', comment: 'Ill remember this workout!', workout_id: workout2.id, user_id: user2.id)
+comment3 = Comment.create(title: 'Zen', comment: 'what a great stretch!', workout_id: workout3.id, user_id: user3.id)

@@ -61,7 +61,6 @@ const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) 
         <Button onClick={newWorkoutClick}>Create New Workout</Button>
       </div>
       </div>
-   
   </>
   );
 };
