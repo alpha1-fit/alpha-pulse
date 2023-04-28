@@ -10,7 +10,7 @@ const Footer = () => {
         <Button>αJoel</Button>
       </Link>
       <Link to="/about">
-        <Button>αYahyα </Button>
+        <Button>αYahyα</Button>
       </Link>
       <Link to="/about">
         <Button>αChris</Button>
