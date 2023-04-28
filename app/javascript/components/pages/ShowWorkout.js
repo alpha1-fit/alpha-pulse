@@ -47,10 +47,10 @@ const ShowWorkout = ({
           selectedWorkout: selectedWorkout,
           logic: comment.workout_id === selectedWorkout.id,
         });
-        comment.workout_id === selectedWorkout.id
+        return comment.workout_id === selectedWorkout.id;
       })
     );
-  }, []);
+  }, [comments, selectedWorkout]);
 
   console.log({ logged_in: logged_in });
   return (
