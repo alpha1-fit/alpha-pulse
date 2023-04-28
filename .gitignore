@@ -42,3 +42,5 @@ yarn-debug.log*
 
 # Ignore DS Store
 .DS_Store
+*/.DS_Store
+app/javascript/components/.DS_Store

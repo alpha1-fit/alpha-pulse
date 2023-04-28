@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { FormGroup, Label, Input, Form,Button } from "reactstrap"
 import { useNavigate } from "react-router-dom"
 
-const CreateComment = ({logged_in, current_user, workout_id}) => {
+const CreateComment = ({logged_in, current_user, workout_id, createComment}) => {
   const navigate = useNavigate()
   const [newComment, setNewComment] = useState({
     title: "",

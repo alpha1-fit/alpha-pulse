@@ -103,10 +103,12 @@ const ShowWorkout = ({
         }}
         >
           <CardBody>
+            <div className="show-title">
             <CardTitle tag="h5">{fakeSelectedWorkout.name}</CardTitle>
-            <CardSubtitle className="mb-2 text-muted" tag="h6">
+            </div>
+            <CardText>
               Workout_type: {fakeSelectedWorkout.workout_type}
-            </CardSubtitle>
+            </CardText>
             <CardText>Duration: {fakeSelectedWorkout.duration}</CardText>
             <CardText>Schedule: {fakeSelectedWorkout.schedule}</CardText>
             <CardText>Description: {fakeSelectedWorkout.description}</CardText>
