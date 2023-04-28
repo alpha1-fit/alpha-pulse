@@ -68,7 +68,7 @@ const cancelEdit = () => {
               name="name"
               placeholder="What is the workout name"
               type="text"
-              required="true"
+              required={true}
               onChange={handleChange}
             />
         </FormGroup>
@@ -81,7 +81,7 @@ const cancelEdit = () => {
               name="workout_type"
               placeholder="What is the type of workout?"
               type="text"
-              required="true"
+              required={true}
               onChange={handleChange}
             />
         </FormGroup>
@@ -94,7 +94,7 @@ const cancelEdit = () => {
               name="duration"
               placeholder="How long does this exercise take?"
               type="time"
-              required="true"
+              required={true}
               onChange={editDuration}
             />
         </FormGroup>
@@ -107,14 +107,14 @@ const cancelEdit = () => {
               name="schedule_date"
               placeholder="When would you like to schedule?"
               type="date"
-              required="true"
+              required={true}
               onChange={editDate}
             />
               <Input
               name="schedule_time"
               placeholder="When would you like to schedule?"
               type="time"
-              required="true"
+              required={true}
               onChange={editTime}
             />
         </FormGroup>
@@ -127,7 +127,7 @@ const cancelEdit = () => {
               name="description"
               placeholder="Describe the workout!"
               type="textarea"
-              required="true"
+              required={true}
               onChange={handleChange}
             />
         </FormGroup>
