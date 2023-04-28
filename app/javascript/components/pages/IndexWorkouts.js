@@ -22,14 +22,18 @@ const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) 
   }
 
   return (
+    <>
+    <div className="buttonCreate">
+    <Toggle
+          loggedIn={logged_in}
+          currentUser={current_user}
+          filterWorkouts={filterWorkouts}
+        />
+ <br></br>
   <div className="fakecontent">
     <div className="card">
       {filteredWorkouts.map((value) => (
         <Card style={{ width: '18rem' }} key={value.id}>
-          <img
-            src={value.image}
-            alt="App Image"
-          />
           <div className="realcards">
           <CardBody className="CardIndex">
             <CardTitle tag="h5">
@@ -51,19 +55,14 @@ const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) 
           </CardBody>
           </div>
         </Card>
+        
       ))}
       <div className="buttonCreate">
         <Button onClick={newWorkoutClick}>Create New Workout</Button>
       </div>
       </div>
-      <div>
-        <Toggle
-          loggedIn={logged_in}
-          currentUser={current_user}
-          filterWorkouts={filterWorkouts}
-        />
-      </div>
-    </div>
+   
+  </>
   );
 };
 
