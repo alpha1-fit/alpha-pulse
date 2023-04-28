@@ -8,13 +8,17 @@ import {
 import { NavLink } from "react-router-dom"
 import alphaPulseLogo from "../assets/PSX_20230414_155911- 1.png"
 
-const Header = ({ toggleSignUp, toggleSignIn, logged_in, logout }) => {
+const Header = ({ toggleSignUp, toggleSignIn, toggleNewWorkout, logged_in, logout }) => {
   const signUpClick = () => {
     toggleSignUp()
   }
 
   const signInClick = () => {
     toggleSignIn()
+  }
+
+  const newWorkoutClick = () => {
+    toggleNewWorkout()
   }
 
   return (
@@ -29,7 +33,7 @@ const Header = ({ toggleSignUp, toggleSignIn, logged_in, logout }) => {
               <>
                 <div className="navitem">
                   <NavItem>
-                    <NavLink to="/workoutnew/new">Create Workouts</NavLink>
+                    <a onClick={newWorkoutClick}>Create Workout</a>
                   </NavItem>
                 </div>
                 <div className="navitem">

@@ -6,7 +6,6 @@ import About from "./pages/About";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import IndexWorkouts from "./pages/IndexWorkouts";
-import CreateWorkout from "./pages/CreateWorkout";
 import EditWorkout from "./pages/EditWorkout";
 import ShowWorkout from "./pages/ShowWorkout";
 import IndexComments from "./pages/IndexComments";
@@ -14,6 +13,7 @@ import CreateComment from "./pages/CreateComment";
 import EditComment from "./pages/EditComment";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
+import CreateWorkoutModal from "./components/CreateWorkout";
 
 const App = (props) => {
   const [workouts, setWorkouts] = useState([]);
@@ -32,6 +32,8 @@ const App = (props) => {
 
   const [showSignIn, setShowSignIn] = useState(false)
 
+  const [showNewWorkout, setShowNewWorkout] = useState(false)
+
   const [showUpdateUser, setShowUpdateUser] = useState(false)
 
   const toggleShowSignUp = () => {
@@ -44,6 +46,10 @@ const App = (props) => {
 
   const toggleUpdateUser = () => {
     setShowUpdateUser(!showUpdateUser)
+  }
+
+  const toggleShowNewWorkout = () => {
+    setShowNewWorkout(!showNewWorkout)
   }
 
   const createUser = (user) => {
@@ -170,13 +176,13 @@ const App = (props) => {
     <div className="page-container">
       {showSignUp && <SignUp createUser={createUser} toggle={toggleShowSignUp} />}
       {showSignIn && <SignIn newSession={createSession} toggle={toggleShowSignIn} />}
+      {showNewWorkout && <CreateWorkoutModal logged_in={props.logged_in} current_user={props.current_user} toggle={toggleShowNewWorkout} createWorkout={createWorkout} />}
       <BrowserRouter>
-        <Header logged_in={props.logged_in} toggleSignUp={toggleShowSignUp} toggleSignIn={toggleShowSignIn} sign_in_route={props.sign_in_route} sign_out_route={props.sign_out_route}/>
+        <Header logged_in={props.logged_in} toggleSignUp={toggleShowSignUp} toggleSignIn={toggleShowSignIn} toggleNewWorkout={toggleShowNewWorkout} sign_in_route={props.sign_in_route} sign_out_route={props.sign_out_route}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts}/>} />
-          <Route path='/workoutnew/new' element={<CreateWorkout {...props} createWorkout={createWorkout} />} />
+          <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts} toggleNewWorkout={toggleShowNewWorkout}/>} />
           <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts} deleteWorkout={deleteWorkout}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
           <Route path='/commentindex' element={<IndexComments createComment={createComment} deleteComment={deleteComment}/>} />

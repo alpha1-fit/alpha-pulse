@@ -3,9 +3,10 @@ import FakerWorkouts from './FakerWorkouts';
 import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import Toggle from '../components/DropDown';
+import fakeWorkouts from "../fakeWorkouts";
 
-const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
-  const [filteredWorkouts, setFilteredWorkouts] = useState(workouts);
+const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) => {
+  const [filteredWorkouts, setFilteredWorkouts] = useState(logged_in ? workouts : fakeWorkouts)
 
   const filterWorkouts = (userId) => {
     if (userId === "all") {
@@ -14,11 +15,16 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
       const filteredWorkouts = workouts.filter(workout => workout.user_id === userId);
       setFilteredWorkouts(filteredWorkouts);
     }
-  };
+  }
+
+  const newWorkoutClick = () => {
+    toggleNewWorkout()
+  }
+
   return (
   <div className="fakecontent">
     <div className="card">
-      {logged_in && filteredWorkouts.map((value) => (
+      {filteredWorkouts.map((value) => (
         <Card style={{ width: '18rem' }} key={value.id}>
           <img
             src={value.image}
@@ -41,16 +47,13 @@ const IndexWorkouts = ({ logged_in, workouts, current_user }) => {
             <CardSubtitle className="mb-2 text-muted" tag="h6">
               <div className="description">description: {value.description}</div>
             </CardSubtitle>
-            <a href={`/workoutshow/${value.id}`}>See Details</a>
+            <NavLink to={`/workoutshow/${value.id}`}>See Details</NavLink>
           </CardBody>
           </div>
         </Card>
       ))}
-      {!logged_in && <FakerWorkouts />}
       <div className="buttonCreate">
-        <Button>
-          <NavLink to={`/workoutnew/new`}>Create New Workout</NavLink>
-        </Button>
+        <Button onClick={newWorkoutClick}>Create New Workout</Button>
       </div>
       </div>
       <div>
