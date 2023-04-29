@@ -16,8 +16,8 @@ const SignUp = ({ createUser, toggle }) => {
     setNewUser({...newUser, [e.target.name]: e.target.value})
   }
 
-  const handleSubmit = () => {
-    createUser({user: newUser})
+  const handleSubmit = async () => {
+    await createUser({user: newUser})
     toggle()
   }
 

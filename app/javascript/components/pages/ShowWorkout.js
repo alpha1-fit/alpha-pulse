@@ -94,29 +94,29 @@ const ShowWorkout = ({
           logged_in={logged_in}
         />
         {!logged_in && (
-        <div>
-        <Card
-        className="workout-show"
-        style={{
-          width: "25%",
-          marginTop: "0px",
-        }}
-        >
-          <CardBody>
-            <div className="show-title">
-            <CardTitle tag="h5">{fakeSelectedWorkout.name}</CardTitle>
-            </div>
-            <CardText>
-              Workout_type: {fakeSelectedWorkout.workout_type}
-            </CardText>
-            <CardText>Duration: {fakeSelectedWorkout.duration}</CardText>
-            <CardText>Schedule: {fakeSelectedWorkout.schedule}</CardText>
-            <CardText>Description: {fakeSelectedWorkout.description}</CardText>
-          </CardBody>
-        </Card>
-        <FakerComments/>
-        </div>
-      )}
+          <div>
+            <Card
+              className="workout-show"
+              style={{
+                width: "25%",
+                marginTop: "0px",
+              }}
+            >
+              <CardBody>
+                <div className="show-title">
+                  <CardTitle tag="h5">{fakeSelectedWorkout.name}</CardTitle>
+                </div>
+                <CardText>
+                  Workout_type: {fakeSelectedWorkout.workout_type}
+                </CardText>
+                <CardText>Duration: {fakeSelectedWorkout.duration}</CardText>
+                <CardText>Schedule: {fakeSelectedWorkout.schedule}</CardText>
+                <CardText>Description: {fakeSelectedWorkout.description}</CardText>
+              </CardBody>
+            </Card>
+            <FakerComments />
+          </div>
+        )}
       </div>
     </div>
   );

@@ -15,8 +15,8 @@ const SignIn = ({ newSession, toggle }) => {
     toggle()
   }
 
-  const handleSubmit = () => {
-    newSession({ user: sessionUser })
+  const handleSubmit = async () => {
+    await newSession({ user: sessionUser })
     toggle()
   }
 
