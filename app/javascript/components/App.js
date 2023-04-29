@@ -62,7 +62,6 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then(data => console.log(data))
       .catch((errors) => console.log("User create errors:", errors))
   }
 
@@ -76,8 +75,18 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then(data => console.log(data))
       .catch((errors) => console.log("Session errors:", errors))
+  }
+  
+  const destroySession = () => {
+    fetch(`/users/logout`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "GET"
+    })
+      .then((response) => response.json())
+      .catch((errors) => console.log("delete errors:", errors))
   }
 
   const readWorkouts = () => {
@@ -178,7 +187,7 @@ const App = (props) => {
       {showSignIn && <SignIn newSession={createSession} toggle={toggleShowSignIn} />}
       {showNewWorkout && <CreateWorkoutModal logged_in={props.logged_in} current_user={props.current_user} toggle={toggleShowNewWorkout} createWorkout={createWorkout} />}
       <BrowserRouter>
-        <Header logged_in={props.logged_in} toggleSignUp={toggleShowSignUp} toggleSignIn={toggleShowSignIn} toggleNewWorkout={toggleShowNewWorkout} sign_in_route={props.sign_in_route} sign_out_route={props.sign_out_route}/>
+        <Header logged_in={props.logged_in} toggleSignUp={toggleShowSignUp} toggleSignIn={toggleShowSignIn} toggleNewWorkout={toggleShowNewWorkout} logout={destroySession}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />

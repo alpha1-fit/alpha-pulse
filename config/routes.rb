@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       sessions: 'users/sessions',
       registrations: 'users/registrations'
     }
+  delete '/users/logout', to: 'users/sessions#destroy'
   get 'home/index'
   get '*path', to: 'home#index', constraints: ->(request){ request.format.html? }
   root 'home#index'

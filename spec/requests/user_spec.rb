@@ -10,13 +10,38 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       expect {
         post :create, params: {
           user: {
-            email: 'user@example.com',
+            email: 'user1@example.com',
             password: '123abcd',
-            username: 'tester',
+            password_confirmation: '123abcd',
+            username: 'tester1',
             photo: 'url'
           } 
         }
       }.to change { User.count }.by(1)
+    end
+
+    it 'fails when out of model specs' do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
+      post :create, params: {
+        user: {
+          email: 'user1@example.com',
+          password: '123abcd',
+          password_confirmation: '123abcd',
+          username: 'tester1',
+          photo: 'url'
+        } 
+      }
+      post :create, params: {
+        user: {
+          email: 'user1@example.com',
+          password: '123abcd',
+          password_confirmation: '123abcd',
+          username: 'tester1',
+          photo: 'url'
+        } 
+      }
+
+      expect(response).to have_http_status(422)
     end
   end
 
@@ -25,9 +50,10 @@ RSpec.describe Users::RegistrationsController, type: :controller do
       @request.env["devise.mapping"] = Devise.mappings[:user]
       post :create, params: {
         user: {
-          email: 'user@example.com',
+          email: 'user2@example.com',
           password: '123abcd',
-          username: 'tester',
+          password_confirmation: '123abcd',
+          username: 'tester2',
           photo: 'url'
         }
       }

@@ -17,8 +17,12 @@ const Header = ({ toggleSignUp, toggleSignIn, toggleNewWorkout, logged_in, logou
     toggleSignIn()
   }
 
+  const logoutClick = () => {
+    logout()
+
   const newWorkoutClick = () => {
     toggleNewWorkout()
+
   }
 
   return (
@@ -38,7 +42,7 @@ const Header = ({ toggleSignUp, toggleSignIn, toggleNewWorkout, logged_in, logou
                 </div>
                 <div className="navitem">
                   <NavItem>
-                    <a onClick={logout}>Sign Out</a>
+                    <a onClick={logoutClick}>Sign Out</a>
                   </NavItem>
                 </div>
               </>
