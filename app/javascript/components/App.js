@@ -19,12 +19,12 @@ const App = (props) => {
   const [workouts, setWorkouts] = useState([]);
   useEffect(() => {
     readWorkouts()
-  }, [])
+  }, [props.logged_in])
 
   const [comments, setComments] = useState([]);
   useEffect(() => {
     readComments()
-  }, [])
+  }, [props.logged_in])
 
   const [user, setUser] = useState()
 
@@ -183,10 +183,10 @@ const App = (props) => {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts} toggleNewWorkout={toggleShowNewWorkout}/>} />
-          <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts} deleteWorkout={deleteWorkout}/>} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts} comments={comments} deleteWorkout={deleteWorkout} deleteComment={deleteComment}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
-          <Route path='/commentindex' element={<IndexComments {...props} comments={comments} createComment={createComment} deleteComment={deleteComment}/>} />
-          <Route path='/commentnew' element={<CreateComment />} />
+          <Route path='/commentindex' element={<IndexComments {...props} comments={comments} deleteComment={deleteComment}/>} />
+          <Route path='/commentnew' element={<CreateComment createComment={createComment} />} />
           <Route path='/commentedit/:id' element={<EditComment updateComment={updateComment} />} />
           <Route path='*' element={<NotFound />} />
         </Routes>

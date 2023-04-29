@@ -1,9 +1,8 @@
 import React from 'react'
 import { render, screen } from "@testing-library/react"
-import { MemoryRouter, Routes, Route } from "react-router-dom"
+import { MemoryRouter, Routes, Route, Outlet } from "react-router-dom"
 import userEvent from "@testing-library/user-event"
 import IndexWorkouts from "../components/pages/IndexWorkouts"
-import ShowWorkout from '../components/pages/ShowWorkout'
 import "@testing-library/jest-dom"
 
 const toggleModalSpy = jest.fn()
@@ -47,13 +46,7 @@ describe("<IndexWorkouts />", () => {
             toggleNewWorkout={toggleModalSpy}
           />}
           />
-          <Route path="/workoutshow/:id" element={<ShowWorkout
-            logged_in={true}
-            workouts={mockWorkouts}
-            current_user={{ name: "tester", id: 1 }}
-            deleteWorkout={mockDeleteWorkout}
-          />}
-          />
+          <Route path="/workoutshow/:id" element={<Outlet/>} />
         </Routes>
       </MemoryRouter>
     )
@@ -71,14 +64,7 @@ describe("<IndexWorkouts />", () => {
               toggleNewWorkout={toggleModalSpy}
             />}
           />
-          <Route path="/workoutshow/:id" element={
-            <ShowWorkout
-              logged_in={false}
-              workouts={mockWorkouts}
-              current_user={{}}
-              deleteWorkout={mockDeleteWorkout}
-            />}
-          />
+          <Route path="/workoutshow/:id" element={<Outlet/>}/>
         </Routes>
       </MemoryRouter>
     )
