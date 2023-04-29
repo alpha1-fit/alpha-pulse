@@ -65,7 +65,7 @@ const ShowWorkout = ({
               <CardText>Description: {selectedWorkout.description}</CardText>
               <Button>
                 <NavLink
-                  to={`/WorkoutEdit/${selectedWorkout.id}/edit`}
+                  to={`/WorkoutEdit/1/edit`}
                   className="nav-link"
                 >
                   Edit a Workout

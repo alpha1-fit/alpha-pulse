@@ -10,7 +10,7 @@ const EditWorkout = ({ workouts, current_user, updateWorkout }) => {
     if (workouts.length > 0) {
       let currentWorkout = Array.isArray(workouts) && workouts.find(
         (workout) => workout.id === +id
-      );
+      )
 
       setEditWorkout({
         name: currentWorkout.name,
