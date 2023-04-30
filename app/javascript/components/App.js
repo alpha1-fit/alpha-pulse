@@ -20,11 +20,13 @@ import fakeComments from "./fakeComments";
 const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false)
   useEffect(() => {
+    console.log({m: "updating loggedIn", v: props.logged_in})
     setLoggedIn(props.logged_in)
   }, [props.logged_in, props.current_user, sessionChange])
 
   const [currentUser, setCurrentUser] = useState({})
   useEffect(() => {
+    console.log({m: "updating currentUser", v: props.current_user})
     setCurrentUser(props.current_user)
   }, [props.logged_in, props.current_user, sessionChange])
 
@@ -37,7 +39,7 @@ const App = (props) => {
     } else {
       setWorkouts(fakeWorkouts)
     }
-  }, [loggedIn])
+  }, [loggedIn, sessionChange])
 
   const [comments, setComments] = useState([]);
   useEffect(() => {
@@ -46,7 +48,7 @@ const App = (props) => {
     } else {
       setComments(fakeComments)
     }
-  }, [loggedIn])
+  }, [loggedIn, sessionChange])
 
   const [showSignUp, setShowSignUp] = useState(false)
 
@@ -97,6 +99,7 @@ const App = (props) => {
     })
       .then((response) => response.json())
       .then(() => setSessionChange(!sessionChange))
+      .then(() => console.log("creating session"))
       .catch((errors) => console.log("Session errors:", errors))
   }
   
@@ -109,6 +112,7 @@ const App = (props) => {
     })
       .then((response) => response.json())
       .then(() => setSessionChange(!sessionChange))
+      .then(() => console.log("destroying session"))
       .catch((errors) => console.log("delete errors:", errors))
   }
 
@@ -129,7 +133,7 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then((payload) => readWorkouts())
+      .then(() => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
   }
 
@@ -154,7 +158,7 @@ const App = (props) => {
       method: "DELETE"
     })
       .then((response) => response.json())
-      .then((payload) => readWorkouts())
+      .then(() => readWorkouts())
       .catch((errors) => console.log("delete errors:", errors))
   }
 
@@ -175,7 +179,7 @@ const App = (props) => {
       method: "POST"
     })
     .then((response) => response.json())
-    .then((payload) => readComments())
+    .then(() => readComments())
     .catch((errors) => console.log("Comment create errors:", errors))
   }
 
@@ -188,7 +192,7 @@ const App = (props) => {
       method: "PATCH",
     })
       .then((response) => response.json())
-      .then((payload) => readComments(payload))
+      .then(() => readComments())
       .catch((errors) => console.log("Comment update errors:", errors));
   }
 
@@ -200,7 +204,7 @@ const App = (props) => {
       method: "DELETE"
     })
       .then((response) => response.json())
-      .then((payload) => readComments())
+      .then(() => readComments())
       .catch((errors) => console.log("delete errors:", errors))
   }
 
