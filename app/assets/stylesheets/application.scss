@@ -127,6 +127,10 @@ h2 {
     var(--accent-color-1) 0 55%,
     var(--base-color) 65% 100%
   );
+  -clip: text;
+  -background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
@@ -222,17 +226,6 @@ h2 {
   transform: scale(1.08, 1.03);
 }
 
-.card:hover > .card-body {
-  background-position: -10% 0%;
-  color: var(--base-color);
-}
-
-.card:hover > .card-body > .card-description > .card-description-word {  
-  opacity: 1;
-  transform: translateY(0%);
-  transition: opacity 0ms, transform 200ms cubic-bezier(.90, .06, .15, .90);
-}
-
 .card:before {
   background: linear-gradient(
     130deg, 
@@ -284,10 +277,6 @@ h2 {
   white-space: pre-wrap;
 }
 
-.card:hover > .card-title, .card-description {
-  color: var(--base-color);
-}
-
 .card-title {
   font-size: 2em;
 }
@@ -295,15 +284,17 @@ h2 {
 .card-description {
   font-size: 1em;
   margin-top: 1em;
+  opacity: 0;
 }
 
-.card-description-word {
-  display: inline-block;
-  margin: 0vmin 0.3vmin;
-  opacity: 0;
-  position: relative;  
-  transform: translateY(40%);
-  transition: none;
+.card:hover > .card-body {
+  background-position: -10% 0%;
+  color: var(--base-color);
+}
+
+.card:hover > .card-body > .card-title, .card-description {
+  color: var(--base-color);
+  opacity: 1;
 }
 
 .card-link {

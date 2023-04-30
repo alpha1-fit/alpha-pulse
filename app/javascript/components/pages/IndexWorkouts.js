@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { Button } from "reactstrap"
 import { NavLink } from "react-router-dom"
 import Toggle from "../components/DropDown"
@@ -26,22 +26,6 @@ const IndexWorkouts = ({ logged_in, workouts, current_user, toggleNewWorkout }) 
     let remainder = seconds - hours * 3600 - minutes * 60
     return [hours, minutes, remainder].join(":")
   }
-
-  // const [subtitle, setSubtitle] = useState("")
-
-  // const createWord = (text, index) => {
-  //   const word = document.createElement("span")
-  //   word.innerHTML = `${text} `
-  //   word.classList.add("card-subtitle-word")
-  //   word.style.transitionDelay = `${index * 40}ms`
-  //   return word
-  // }
-
-  // const addWord = (text, index) => subtitle.appendChild(createWord(text, index))
-
-  // const createSubtitle = (text) => text.split(" ").map(addWord)
-
-  // createSubtitle(`But in a much more real sense, I have no idea what I"m doing.`)
 
   return (
     <div className="content-wrap">
