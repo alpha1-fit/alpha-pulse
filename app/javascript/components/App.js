@@ -20,13 +20,11 @@ import fakeComments from "./fakeComments";
 const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false)
   useEffect(() => {
-    console.log({m: "updating loggedIn", v: props.logged_in})
     setLoggedIn(props.logged_in)
   }, [props.logged_in, props.current_user, sessionChange])
 
   const [currentUser, setCurrentUser] = useState({})
   useEffect(() => {
-    console.log({m: "updating currentUser", v: props.current_user})
     setCurrentUser(props.current_user)
   }, [props.logged_in, props.current_user, sessionChange])
 
@@ -99,7 +97,6 @@ const App = (props) => {
     })
       .then((response) => response.json())
       .then(() => setSessionChange(!sessionChange))
-      .then(() => console.log("creating session"))
       .catch((errors) => console.log("Session errors:", errors))
   }
   
@@ -112,7 +109,6 @@ const App = (props) => {
     })
       .then((response) => response.json())
       .then(() => setSessionChange(!sessionChange))
-      .then(() => console.log("destroying session"))
       .catch((errors) => console.log("delete errors:", errors))
   }
 
