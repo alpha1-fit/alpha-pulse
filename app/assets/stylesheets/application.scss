@@ -127,8 +127,6 @@ h2 {
     var(--accent-color-1) 0 55%,
     var(--base-color) 65% 100%
   );
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
@@ -226,6 +224,7 @@ h2 {
 
 .card:hover > .card-body {
   background-position: -10% 0%;
+  color: var(--base-color);
 }
 
 .card:hover > .card-body > .card-description > .card-description-word {  
@@ -239,8 +238,8 @@ h2 {
     130deg, 
     transparent 0% 33%, 
     var(--accent-color-1) 66%, 
-    var(--accent-color-2) 83.5%, 
-    var(--accent-color-3) 100%
+    var(--accent-color-3) 83.5%, 
+    var(--accent-color-2) 100%
   );
   background-position: 0% 0%;
   background-size: 300% 300%;
@@ -253,6 +252,7 @@ h2 {
   transition: background-position 350ms ease, transform 350ms ease;
   width: 100%;
   z-index: 1;
+  border-radius: 10px;
 }
 
 .card-content {
@@ -260,6 +260,7 @@ h2 {
     rgba(255, 255, 255, 0.2) 8%, 
     transparent 8%
   );
+  border-radius: 10px;
   background-position: 0% 0%;
   background-size: 5vmin 5vmin;
   height: 100%;
@@ -270,13 +271,21 @@ h2 {
   z-index: 2;
 }
 
+.card:hover > .card-content {
+  background-position: -10% 0%;
+}
+
 .card-title,
 .card-description {
   color: white;
   font-family: "Anek Latin", sans-serif;
   font-weight: 400;
   margin: 0px;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
+}
+
+.card:hover > .card-title, .card-description {
+  color: var(--base-color);
 }
 
 .card-title {
@@ -337,17 +346,7 @@ h2 {
   align-items: center;
 }
 
-.fakercontent {
-  background: var(--base-color);
-  display: flex;
-  align-items: baseline;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 3em;
-  position: relative;
-}
-
-.workout-show{
+.workout-show {
   height:60vh;
   aspect-ratio: 1 / 1.5;
   background: var(--base-color);
@@ -363,14 +362,12 @@ h2 {
   border-color: whitesmoke;
   align-content: center;
   top:200px;
- 
 }
+
 .show-title{
   color: var(--accent-color-1)
 }
-.realcard-title{
-  color:var(--accent-color-1)
-}
+
 .navlink-button{
   gap:2em;
   background: var(--base-color);

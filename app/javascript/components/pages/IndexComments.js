@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardTitle, CardSubtitle, CardBody, Button } from "reactstrap";
+import { Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 const IndexComments = ({
