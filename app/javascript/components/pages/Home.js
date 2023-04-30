@@ -3,7 +3,7 @@ import luXiaojun from '../assets/Lu-Xiaojun.png'
 
 const Home = () => {
   return (
-    <div className='content'>
+    <div className='content-wrap'>
       <div className='Home-Page'>
       <h2>Are you tired of struggling to achieve your fitness goals alone?</h2>
 

@@ -7,38 +7,38 @@ const IndexComments = ({
   current_user,
   comments,
 }) => {
-  const handleDelete = () => {};
+  const handleDelete = () => { };
   return (
-    <div className="card">
-      {logged_in &&
-        Array.isArray(comments) &&
-        comments.map((comment) => {
-          return (
-            <Card style={{ width: "18rem" }} key={comment.id}>
-              <CardBody className="Cards">
-                <CardTitle tag="h5">title: {comment.title}</CardTitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  comment: {comment.comment}
-                </CardSubtitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  workout: {comment.workout_id}
-                </CardSubtitle>
-                <CardSubtitle className="mb-2 text-muted" tag="h6">
-                  user: {comment.user_id}
-                </CardSubtitle>
-                {current_user.id === comment.user_id && (
-                  <>
-                    <Button>
-                      <NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink>
-                    </Button>
-                    <Button onClick={handleDelete}>Delete</Button>
-                  </>
-                )}
-              </CardBody>
-            </Card>
-          );
-        })}
-    </div>
+    <div className="content-wrap">
+      <div className="card-container">
+        {logged_in &&
+          Array.isArray(comments) &&
+          comments.map((comment) => {
+            return (
+              <div className="card" key={comment.id}>
+                <div className="card-content">
+                  <div className="card-body">
+                    <h3 className="card-title">{comment.title}</h3>
+                    <h4 className="card-description">
+                      {comment.comment}<br />
+                      Workout: {comment.workout_id}<br />
+                      User: {comment.user_id}
+                    </h4>
+                    {current_user.id === comment.user_id && (
+                      <div className="comment-options">
+                        <Button>
+                          <NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink>
+                        </Button>
+                        <Button onClick={handleDelete}>Delete</Button>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+      </div >
+    </div >
   );
 };
 

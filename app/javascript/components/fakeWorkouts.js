@@ -4,7 +4,10 @@ const fakeWorkouts = [
         workout_type: 'Weightlifting',
         duration: '90',
         schedule: '2023-04-18 00:00',
-        description: 'Bench press: 4 sets of 12, (60-75% of Bodyweight Bench press Incline: 4 sets of 12, (60-75% of Bodyweight) Bodyweight Dips: 4 sets of 12Push ups: 4 sets to failure Adjust weight by conformability',
+        description: `Bench press: 4 sets of 12, (60-75% of Bodyweight \n
+          Bench press Incline: 4 sets of 12, (60-75% of Bodyweight) \n
+          Bodyweight Dips: 4 sets of 12 \n
+          Push ups: 4 sets to failure Adjust weight by comfortability`,
         id:1
     },
     {
@@ -12,7 +15,11 @@ const fakeWorkouts = [
         workout_type: 'Swimming',
         duration: '180',
         schedule: '2023/04/23 00:00',
-        description: '25m swim sprints: 4 times 50m swim: 4 times 100m swim: 4 times 500m swim: 1 time Stretch! : cool down',
+        description: `25m swim sprints: 4 times \n
+        50m swim: 4 times \n
+        100m swim: 4 times \n
+        500m swim: 1 time \n
+        Stretch! : cool down`,
         id:2
     },
     {
@@ -20,7 +27,10 @@ const fakeWorkouts = [
         workout_type: 'WeightLifting',
         duration: '90',
         schedule: '2023/04/30 00:00',
-        description:'Leg press: 4 sets of 12 Squats (weighted or no weighted): 4 sets of 12 Romanian Deadlifts: 4 sets of 12 Hip Thrusts: 4 sets of 12 Adjust weight by conformability',
+        description: `Leg press: 4 sets of 12 \n
+        Squats (weighted or no weighted): 4 sets of 12 \n
+        Romanian Deadlifts: 4 sets of 12 \n
+        Hip Thrusts: 4 sets of 12 Adjust weight by comfortability`,
         id:3
     }
 ]

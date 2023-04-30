@@ -10,10 +10,10 @@ user1_workouts = [
         duration: '90',
         schedule: '2023-04-18 00:00',
         description: '
-        Bench press: 4 sets of 12, (60-75% of Bodyweight)
-        Bench press Incline: 4 sets of 12, (60-75% of Bodyweight)
-        Bodyweight Dips: 4 sets of 12
-        Push ups: 4 sets to failure
+        Bench press: 4 sets of 12, (60-75% of Bodyweight) \n
+        Bench press Incline: 4 sets of 12, (60-75% of Bodyweight) \n
+        Bodyweight Dips: 4 sets of 12 \n
+        Push ups: 4 sets to failure \n
         Adjust weight by comfortablity'
     },
        {
@@ -22,10 +22,10 @@ user1_workouts = [
         duration: '180',
         schedule: '2023/04/23 00:00',
         description: '
-        25m swim sprints: 4 times
-        50m swim: 4 times
-        100m swim: 4 times
-        500m swim: 1 time
+        25m swim sprints: 4 times \n
+        50m swim: 4 times \n
+        100m swim: 4 times \n
+        500m swim: 1 time \n
         Stretch! : cooldown
         '
     }
@@ -38,10 +38,10 @@ user2_workouts = [
         duration: '90',
         schedule: '2023/04/30 00:00',
         description: '
-        Leg press: 4 sets of 12
-        Squats (weighted or no weighted): 4 sets of 12
-        Romanian Deadlifts: 4 sets of 12
-        Hip Thrusts: 4 sets of 12
+        Leg press: 4 sets of 12 \n
+        Squats (weighted or no weighted): 4 sets of 12 \n
+        Romanian Deadlifts: 4 sets of 12 \n
+        Hip Thrusts: 4 sets of 12 \n
         Adjust weight by comfortablity'
     }
 ]
@@ -53,10 +53,10 @@ user3_workouts = [
         duration: '50',
         schedule: '2023/04/22 00:00',
         description: '
-        Cross arm body stretch: 2 times for 30s each arm
-        Shoulder mobility, T Y, and U poses 12 reps each
-        Hip Mobility 2 times for 30s each leg side
-        Ankle mobility: 20s each ankle side to side
+        Cross arm body stretch: 2 times for 30s each arm \n
+        Shoulder mobility, T Y, and U poses 12 reps each \n
+        Hip Mobility 2 times for 30s each leg side \n
+        Ankle mobility: 20s each ankle side to side \n
         Take your time each exercise'
     }
 ]
