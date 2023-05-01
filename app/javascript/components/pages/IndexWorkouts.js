@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
-import Toggle from '../components/DropDown';
-import fakeWorkouts from "../fakeWorkouts";
+import React, { useState, useEffect, useRef } from "react"
+import { Button } from "reactstrap"
+import { NavLink } from "react-router-dom"
+import Toggle from "../components/DropDown"
+import fakeWorkouts from "../fakeWorkouts"
 
-const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) => {
+const IndexWorkouts = ({ logged_in, workouts, current_user, toggleNewWorkout }) => {
   const [filteredWorkouts, setFilteredWorkouts] = useState(logged_in ? workouts : fakeWorkouts)
 
   const filterWorkouts = (userId) => {
     if (userId === "all") {
-      setFilteredWorkouts(workouts);
+      setFilteredWorkouts(workouts)
     } else {
-      const filteredWorkouts = workouts.filter(workout => workout.user_id === userId);
-      setFilteredWorkouts(filteredWorkouts);
+      const filteredWorkouts = workouts.filter(workout => workout.user_id === userId)
+      setFilteredWorkouts(filteredWorkouts)
     }
   }
 
@@ -20,49 +20,46 @@ const IndexWorkouts = ({ logged_in, workouts, current_user , toggleNewWorkout}) 
     toggleNewWorkout()
   }
 
+  const parseTime = (seconds) => {
+    let hours = Math.floor(seconds / 3600)
+    let minutes = Math.floor((seconds - hours * 3600) / 60)
+    let remainder = seconds - hours * 3600 - minutes * 60
+    return [hours, minutes, remainder].join(":")
+  }
+
   return (
-    <>
-      <div className="buttonCreate">
+    <div className="content-wrap">
+      <div className="filter-toggle">
         <Toggle
           loggedIn={logged_in}
           currentUser={current_user}
           filterWorkouts={filterWorkouts}
         />
-        <br></br>
-        <div className="fakecontent">
-          <div className="card">
-            {filteredWorkouts.map((value) => (
-              <Card style={{ width: '18rem' }} key={value.id}>
-                <div className="realcards">
-                  <CardBody className="CardIndex">
-                    <CardTitle tag="h5">
-                      name: {value.name}
-                    </CardTitle>
-                    <CardSubtitle className="mb-2 text-muted" tag="h6">
-                      <div className="description">workout_type: {value.workout_type}</div>
-                    </CardSubtitle>
-                    <CardSubtitle className="mb-2 text-muted" tag="h6">
-                      <div className="description">duration: {value.duration}</div>
-                    </CardSubtitle>
-                    <CardSubtitle className="mb-2 text-muted" tag="h6">
-                      <div className="description">schedule: {value.schedule}</div>
-                    </CardSubtitle>
-                    <CardSubtitle className="mb-2 text-muted" tag="h6">
-                      <div className="description">description: {value.description}</div>
-                    </CardSubtitle>
-                    <NavLink to={`/workoutshow/${value.id}`}>See Details</NavLink>
-                  </CardBody>
-                </div>
-              </Card>
-            ))}
-            <div className="buttonCreate">
-              <Button onClick={newWorkoutClick}>Create New Workout</Button>
+      </div>
+      <br />
+      <div className="card-container">
+        {filteredWorkouts.map((card) => (
+          <div className="card" key={card.id}>
+            <div className="card-content">
+              <div className="card-body">
+                <h3 className="card-title">{card.name}</h3>
+                <h4 className="card-description">
+                  Type: {card.workout_type}<br />
+                  Duration: {parseTime(card.duration)}<br />
+                  Schedule: {card.schedule}<br />
+                  Description: {card.description}
+                </h4>
+                <NavLink className="card-link" to={`/workoutshow/${card.id}`}>See Details</NavLink>
+              </div>
             </div>
           </div>
-        </div>
+        ))}
       </div>
-    </>
-  );
-};
+      <div className="buttonCreate">
+        <Button onClick={newWorkoutClick}>Create New Workout</Button>
+      </div>
+    </div>
+  )
+}
 
-export default IndexWorkouts;
+export default IndexWorkouts

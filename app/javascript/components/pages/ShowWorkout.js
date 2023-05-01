@@ -10,7 +10,6 @@ import {
 import { NavLink, useParams, useNavigate } from "react-router-dom"
 import fakeWorkouts from "../fakeWorkouts"
 import IndexComments from "./IndexComments"
-import fakeComments from '../fakeComments'
 
 const ShowWorkout = ({
   workouts,
@@ -35,51 +34,56 @@ const ShowWorkout = ({
     }
   }
 
-  const [filteredComments, setFilteredComments] = useState(logged_in ? comments : fakeComments)
+  const [filteredComments, setFilteredComments] = useState(comments)
   useEffect(() => {
-    if(logged_in){
-      setFilteredComments(comments.filter((comment) => comment.workout_id === selectedWorkout.id))
-    } else {
-      setFilteredComments(fakeComments.filter((comment) => comment.workout_id === selectedWorkout.id))
-    }
-  }, [comments, selectedWorkout, logged_in])
+    setFilteredComments(
+      comments.filter((comment) => {
+        return comment.workout_id === selectedWorkout.id
+      })
+    )
+  }, [comments, selectedWorkout])
+
+  const parseTime = (seconds) => {
+    let hours = Math.floor(seconds / 3600)
+    let minutes = Math.floor((seconds - hours * 3600) / 60)
+    let remainder = seconds - hours * 3600 - minutes * 60
+    return [hours, minutes, remainder].join(":")
+  }
 
   return (
     <div>
-      <div className="workout-show-align">
-        <div className="card">
-          <Card
-            className="workout-show"
-            style={{
-              width: "25%",
-              marginTop: "0px",
-            }}
-          >
-            <CardBody>
-              <CardTitle tag="h5">{selectedWorkout.name}</CardTitle>
-              <CardSubtitle className="mb-2 text-muted" tag="h6">
-                Workout_type: {selectedWorkout.workout_type}
-              </CardSubtitle>
-              <CardText>Duration: {selectedWorkout.duration}</CardText>
-              <CardText>Schedule: {selectedWorkout.schedule}</CardText>
-              <CardText>Description: {selectedWorkout.description}</CardText>
-              <Button>
-                <NavLink
-                  to={`/WorkoutEdit/1/edit`}
-                  className="nav-link"
-                >
-                  Edit a Workout
-                </NavLink>
-              </Button>
-              {current_user.id === selectedWorkout.user_id && <Button onClick={handleDelete}>Delete Workout Profile</Button>}
-              <Button>
-                <NavLink to={`/commentnew/`} className="nav-link">
-                  Add a comment
-                </NavLink>
-              </Button>
-            </CardBody>
-          </Card>
-        </div>
+      <div className="content-wrap">
+        {logged_in && selectedWorkout && (
+          <div className="card-container">
+            <div className="card">
+              <div className="card-body">
+                <h3 className="card-title">{selectedWorkout.name}</h3>
+                <h4 className="card-description">
+                  Type: {selectedWorkout.workout_type}<br />
+                  Duration: {selectedWorkout.duration}<br />
+                  Schedule: {parseTime(selectedWorkout.schedule)}<br />
+                  Description: {selectedWorkout.description}
+                </h4>
+                <div className="button-options">
+                  <Button>
+                    <NavLink
+                      to={`/WorkoutEdit/${selectedWorkout.id}/edit`}
+                      className="nav-link"
+                    >
+                      Edit a Workout
+                    </NavLink>
+                  </Button>
+                  <Button onClick={handleDelete}>Delete Workout Profile</Button>
+                  <Button>
+                    <NavLink to={`/commentnew/`} className="nav-link">
+                      Add a comment
+                    </NavLink>
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
       <div>
         <IndexComments

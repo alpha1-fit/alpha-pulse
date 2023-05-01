@@ -6,34 +6,64 @@
   --accent-color-1: #9bffff;
   --accent-color-2: #fe9176;
   --accent-color-3: #ffb7e9;
-  --header-height: 5vh;
+  --header-height: 5rem;
   --footer-height: 3.5rem;
 }
+
+// NAVIGATION ORGANIZATION
+
+.page-container {
+  position: relative;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--base-color);
+}
+
 .Header {
   position: fixed;
   top: 0;
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  width: 100vw;
   gap: 2em;
   background-color: var(--base-color);
   color: var(--mid-color);
   font-weight: lighter;
-  font-size: 20px;
+  font-size: 3em;
   font-family: sans-serif;
   height: var(--header-height);
   z-index: 1000;
 }
 
-.logo {
-  max-height: 5vh;
-  max-width: 5vw;
+
+.content-wrap {
+  padding-top: calc(1.8*var(--header-height));
+  min-height: 95vh;
+  padding-bottom: var(--footer-height);
+  display: flex;
+  flex-direction: column;
 }
 
-.navitem {
+.Footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: var(--footer-height);
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--base-color);
+  color: var(--mid-color);
+  border: 4px solid var(--accent-color-3);
+  font-weight: lighter;
+  font-size: 2em;
+  font-family: sans-serif;
+  margin-bottom: auto;
 }
+
+.logo {
+  max-height: var(--header-height);
+  max-width: var(--header-height);
+}
+
 *,
 *:before,
 *:after {
@@ -41,6 +71,7 @@
   margin: 0;
   box-sizing: border-box;
 }
+
 a {
   position: relative;
   text-decoration: none;
@@ -52,7 +83,7 @@ a {
 a:after {
   content: "";
   position: absolute;
-  background-color: #ffb7e9;
+  background-color: var(--accent-color-3);
   height: 3px;
   width: 0;
   left: 0;
@@ -66,42 +97,15 @@ a:hover:after {
   width: 100%;
 }
 
-.page-container {
-  position: relative;
-  min-height: 100vh;
-  width: 100vw;
-  background-color: var(--base-color);
-}
-
-.content-wrap {
-  padding-top: var(--header-height);
-  min-height: 95vh;
-  padding-bottom: var(--footer-height);
-  display: flex;
-}
 .body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-image: linear-gradient(to bottom right, #151515, #9bffff);
+  background-image: linear-gradient(to bottom right, var(--base-color), var(--accent-color-1));
 }
 
-.Footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: var(--footer-height);
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  background-color: var(--base-color);
-  color: #c6c1c1;
-  border: 4px solid var(--accent-color-3);
-  font-weight: lighter;
-  font-size: 20px;
-  font-family: sans-serif;
-  margin-bottom: auto;
-}
+// HOME PAGE
+
 .Home-Page {
   background: linear-gradient(
     135deg,
@@ -112,17 +116,8 @@ a:hover:after {
 }
 .home,
 h2 {
-  color: #9bffff;
+  color: var(--accent-color-1);
   text-align: center;
-}
-.content {
-  display: center;
-  background-color: var(--base-color);
-  padding-top: 10vh;
-  min-height: 95vh;
-  padding-bottom: var(--footer-height);
-  display: flex;
-  flex-direction: column;
 }
 
 .hometext {
@@ -132,6 +127,8 @@ h2 {
     var(--accent-color-1) 0 55%,
     var(--base-color) 65% 100%
   );
+  -clip: text;
+  -background-clip: text;
   -webkit-background-clip: text;
   -moz-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -142,6 +139,9 @@ h2 {
   max-width: 100vw;
   object-fit: contain;
 }
+
+
+// ABOUT PAGE
 
 .about-page {
   background-color: var(--base-color);
@@ -190,6 +190,7 @@ h2 {
   filter: invert(93%) sepia(97%) saturate(5837%) hue-rotate(280deg)
     brightness(107%) contrast(105%);
 }
+
 .Indexpage {
   background-color: #151318;
   background: var(--base-color);
@@ -198,47 +199,127 @@ h2 {
   place-content: center;
   flex: column;
 }
-.realcards {
-  height: 60vh;
-  aspect-ratio: 1 / 1.5;
-  background: var(--base-color);
-  border-radius: 0.5rem;
-  background-color: var(--base-color);
+
+// CARD MANAGEMENT
+
+.card-container { 
   display: flex;
-  justify-content: center;
-  flex-direction: column;
-  color: var(--accent-color-3);
-}
-.description {
-  color: #9bffff;
-}
-.fakecards {
-  height: 60vh;
-  aspect-ratio: 1 / 1.5;
-  background: var(--base-color);
-  border-radius: .5rem;
-  color: #9bffff;
-  background-color: var(--base-color);
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  color: var(--accent-color-3);
-}
-.descriptionfake {
-  color: var(--accent-color-1);
-}
-.fakecontent {
-  background: var(--base-color);
-  display: flex;
-  align-items: baseline;
-  justify-content: space-evenly;
-  position: relative;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 3em;
+  gap: 2em;
+  justify-content: space-evenly;
+}
+
+.card {
+  aspect-ratio: calc(1 / 1.6);
+  border-radius: 10px;
+  border: .5vmin solid var(--accent-color-3);
+  cursor: pointer;
+  position: relative;
+  height: 60vh;
+  background-color: var(--base-color);
+}
+
+.card:hover:before {
+  background-position: 100% 100%;
+  border-radius: 12px;
+  transform: scale(1.08, 1.03);
+}
+
+.card:before {
+  background: linear-gradient(
+    130deg, 
+    transparent 0% 33%, 
+    var(--accent-color-1) 66%, 
+    var(--accent-color-3) 83.5%, 
+    var(--accent-color-2) 100%
+  );
+  background-position: 0% 0%;
+  background-size: 300% 300%;
+  content: "";
+  height: 100%;
+  left: 0px;
+  pointer-events: none;
+  position: absolute;
+  top: 0px;
+  transition: background-position 350ms ease, transform 350ms ease;
+  width: 100%;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+.card-content {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.2) 8%, 
+    transparent 8%
+  );
+  border-radius: 10px;
+  background-position: 0% 0%;
+  background-size: 5vmin 5vmin;
+  height: 100%;
+  padding: 5px;
+  position: relative;
+  transition: background-position 350ms ease;
+  width: 100%;
+  z-index: 2;
+}
+
+.card:hover > .card-content {
+  background-position: -10% 0%;
+}
+
+.card-title,
+.card-description {
+  color: white;
+  font-family: "Anek Latin", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+  white-space: pre-wrap;
+}
+
+.card-title {
+  font-size: 2em;
+}
+
+.card-description {
+  font-size: 1em;
+  margin-top: 1em;
+  opacity: 0;
+}
+
+.card:hover > .card-body {
+  background-position: -10% 0%;
+  color: var(--base-color);
+}
+
+.card:hover > .card-body > .card-title, .card-description {
+  color: var(--base-color);
+  opacity: 1;
+}
+
+.card-link {
+  bottom: 0px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 2em;
+  left: 0px;
+  margin: 5vmin;
+  position: absolute;
+  transition: color 250ms ease;
+  z-index: 2;
+}
+
+.description {
+  color: var(--accent-color-1);
 }
 
 .buttonCreate {
+  position: relative;
+  padding: 110px 350px 28px 45px;
+  align-content: center;
+  background: var(--base-color);
+}
+
+.comment-options {
   position: relative;
   padding: 110px 350px 28px 45px;
   align-content: center;
@@ -256,22 +337,12 @@ h2 {
   align-items: center;
 }
 
-.fakercontent {
-  background: var(--base-color);
-  display: flex;
-  align-items: baseline;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 3em;
-  position: relative;
-}
-
-.workout-show{
+.workout-show {
   height:60vh;
   aspect-ratio: 1 / 1.5;
   background: var(--base-color);
   border-radius: 0.5rem;
-  color: (var(--accent-color-3));
+  color: var(--accent-color-3);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -282,14 +353,12 @@ h2 {
   border-color: whitesmoke;
   align-content: center;
   top:200px;
- 
 }
+
 .show-title{
   color: var(--accent-color-1)
 }
-.realcard-title{
-  color:var(--accent-color-1)
-}
+
 .navlink-button{
   gap:2em;
   background: var(--base-color);
@@ -300,7 +369,7 @@ h2 {
   background-color: var(--base-color);
   transition: 0.7s;
   outline-style:solid;
-  box-shadow: 0 0 0 2px #9bffff;
+  box-shadow: 0 0 0 2px var(--accent-color-1);
   margin: auto
 }
 .deletebutton{
@@ -312,10 +381,6 @@ h2 {
   background-color: var(--base-color);
   transition: 0.7s;
   outline-style:solid;
-  box-shadow: 0 0 0 2px #9bffff;
+  box-shadow: 0 0 0 2px var(--accent-color-1);
   margin:auto
-}
-.nav-link{
-  // background-color: #c6c1c1;
-
 }
