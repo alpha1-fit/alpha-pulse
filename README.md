@@ -11,6 +11,13 @@ That's why we created αlphaPulse, the fitness app that connects you to your fri
 αlphaPulse empowers everyone to pursue their fitness goals. Join us on our shared fitness journey today
 
 ## Features
+[] The feature that were placed within our application were
+[] The "About" page has a Carousel installed to provide the user with a world renoun view of what each developer who created this app.
+[] What is included in the Carousel are embeded links to each developers LinkedIn profile, Github page.
+[] "Sign-Up Modal" give the user the ability/ experience to sign up through a pop-up window.
+[] "Sign-In Modal" allows the user to experience the welcome sign-in pop-up window to join in.
+[] "Not Found" sends the user to a not found page of a movable image, when the user is sent to an incorrect page the will find themselves staring down a movable image of "Harry Squatter- the boy who lifts"
+[] "Workout" page provides the user with the experience of viewing a list of workouts as well as creating their own workouts with a pop of color feature while highlighting each individual workout.
 
 ### User management
 
