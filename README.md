@@ -23,4 +23,4 @@ That's why we created αlphaPulse, the fitness app that connects you to your fri
 ## Running the project
 
 ## Dependencies
-* 
+* See dependencies.txt
