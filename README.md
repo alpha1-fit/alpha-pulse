@@ -80,5 +80,23 @@ This application uses several models and controllers through Ruby on Rails. All 
 
 ## Running the project
 
+1. Fork the repository from GitHub.
+
+2. Open up your terminal and navigate to the project directory.
+
+3. Run `bundle install` to install the required Ruby gems and dependencies.
+
+4. Run `yarn` to install the required JavaScript packages and dependencies.
+
+5. Run `rails db:create` to create a new database for the project, if one does not already exist.
+
+6. Run `rails db:migrate` to apply any pending database migrations to the database.
+
+7. Run `rails db:seed` to seed the database with sample data (users, workouts, comments, etc.), if applicable.
+
+8. Run `rails s` to start the Rails server and begin serving the application.
+
+By following these steps, you should be able to get the project up and running on your local machine.
+
 ## Dependencies
 * See dependencies.txt
