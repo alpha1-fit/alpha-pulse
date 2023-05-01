@@ -2,17 +2,16 @@ import React, { useState, useEffect, useRef } from "react"
 import { Button } from "reactstrap"
 import { NavLink } from "react-router-dom"
 import Toggle from "../components/DropDown"
-import fakeWorkouts from "../fakeWorkouts"
 
 const IndexWorkouts = ({ logged_in, workouts, current_user, toggleNewWorkout }) => {
-  const [filteredWorkouts, setFilteredWorkouts] = useState(logged_in ? workouts : fakeWorkouts)
+  const [filteredWorkouts, setFilteredWorkouts] = useState(workouts)
 
   const filterWorkouts = (userId) => {
     if (userId === "all") {
       setFilteredWorkouts(workouts)
     } else {
-      const filteredWorkouts = workouts.filter(workout => workout.user_id === userId)
-      setFilteredWorkouts(filteredWorkouts)
+      let tempFilter = workouts.filter(workout => workout.user_id === userId)
+      setFilteredWorkouts(tempFilter)
     }
   }
 

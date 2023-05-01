@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from "react"
 import {
-  Card,
-  CardBody,
-  CardSubtitle,
-  CardText,
-  CardTitle,
-  Button,
+  Button
 } from "reactstrap"
 import { NavLink, useParams, useNavigate } from "react-router-dom"
 import fakeWorkouts from "../fakeWorkouts"
@@ -53,9 +48,9 @@ const ShowWorkout = ({
   return (
     <div>
       <div className="content-wrap">
-        {logged_in && selectedWorkout && (
-          <div className="card-container">
-            <div className="card">
+        <div className="card-container">
+          <div className="card">
+            <div className="card-content">
               <div className="card-body">
                 <h3 className="card-title">{selectedWorkout.name}</h3>
                 <h4 className="card-description">
@@ -83,7 +78,7 @@ const ShowWorkout = ({
               </div>
             </div>
           </div>
-        )}
+        </div>
       </div>
       <div>
         <IndexComments
@@ -93,7 +88,7 @@ const ShowWorkout = ({
           deleteComment={deleteComment}
         />
       </div>
-    </div>
+    </div >
   )
 }
 
