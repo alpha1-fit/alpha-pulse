@@ -44,22 +44,29 @@ This application uses several models and controllers through Ruby on Rails. All 
 [parameters]: username:string, password:string
 
 [POST] **/users/login** Creates a new session
+
 [GET] **/users/logout** Destorys an existing session
 
 #### Workouts
 [parameters]: name:string, workout_type:string, duration:integer (number of seconds), schedule:datetime, description:text, user_id:integer
 
 [POST] **/workouts** Creates a new workout
+
 [GET] **/workouts** Fetches an array of all workouts
+
 [PATCH] **/workouts/:id** Updates the values of this workout
+
 [DELETE] **/workouts/:id** Destroys this workout
 
 #### Comments
 [parameters]: title:string, comment:text, workout_id:integer, user_id:integer
 
 [POST] **/comments** Creates a new workout
+
 [GET] **/comments** Fetches an array of all workouts
+
 [PATCH] **/comments/:id** Updates the values of this workout
+
 [DELETE] **/comments/:id** Destroys this workout
 
 ## Running the project
