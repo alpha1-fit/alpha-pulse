@@ -14,6 +14,8 @@ That's why we created αlphaPulse, the fitness app that connects you to your fri
 
 ### User management
 
+When using our app the user is experiencing a devise react monolithic app. The user has the ability to create, render/read, update, and delete. The user will see a page and or modal for each functionality and has been implemented from react-strap or created by developers. These forms are from reactstrap and the user has the ability input information to change or create. The user is able to sign-in, sign-out, and sign-up.
+
 ### Workout management
 * As a user  of αlphaPulse, when logged-out, you are able to view and interact with a set mock workouts to essentially show the a viewer of the application a preview of the what they'll experience when using the αlphaPulse app.
 
