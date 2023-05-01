@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import FakerWorkouts from './FakerWorkouts';
 import { Card, CardTitle, CardSubtitle, CardBody, Button } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
 import Toggle from '../components/DropDown';

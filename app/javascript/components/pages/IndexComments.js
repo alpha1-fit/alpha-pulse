@@ -6,15 +6,19 @@ const IndexComments = ({
   logged_in,
   current_user,
   comments,
+  deleteComment
 }) => {
-  const handleDelete = () => {};
+  const handleDelete = (id) => {
+    deleteComment(id)
+  }
+
   return (
     <div className="card">
       {logged_in &&
         Array.isArray(comments) &&
-        comments.map((comment) => {
+        comments.map((comment, index) => {
           return (
-            <Card style={{ width: "18rem" }} key={comment.id}>
+            <Card style={{ width: "18rem" }} key={index}>
               <CardBody className="Cards">
                 <CardTitle tag="h5">title: {comment.title}</CardTitle>
                 <CardSubtitle className="mb-2 text-muted" tag="h6">
@@ -31,7 +35,7 @@ const IndexComments = ({
                     <Button>
                       <NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink>
                     </Button>
-                    <Button onClick={handleDelete}>Delete</Button>
+                    <Button onClick={handleDelete(comment.id)}>Delete</Button>
                   </>
                 )}
               </CardBody>

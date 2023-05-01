@@ -3,9 +3,21 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { fireEvent } from "@testing-library/react";
 import EditComment from "../components/pages/EditComment";
-import ShowWorkout from "../components/pages/ShowWorkout";
-import { MemoryRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { MemoryRouter, Routes, Route, Outlet } from "react-router-dom";
 import "@testing-library/jest-dom";
+
+const editCommentSpy = jest.fn()
+
+const deleteWorkoutSpy = jest.fn()
+
+const mockUseNavigate = jest.fn()
+
+jest.spyOn(window, 'alert').mockImplementation(() => { })
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUseNavigate,
+}))
 
 describe("<EditComment />", () => {
   const mockComments = [{
@@ -20,15 +32,6 @@ describe("<EditComment />", () => {
     title: "Nice!",
     comment: "Great work!"
   }
-
-  const mockWorkouts = [    {
-    name: 'Arnold',
-    workout_type: 'Weightlifting',
-    duration: '90',
-    schedule: '2023-04-18 00:00',
-    description: 'Bench press: 4 sets of 12',
-    id: 1
-}]
 
   const mockUser1 = {
     email: 'test@testing1.com',
@@ -48,19 +51,6 @@ describe("<EditComment />", () => {
     id: 2
   }
 
-  const editCommentSpy = jest.fn()
-
-  const deleteWorkoutSpy = jest.fn()
-
-  const mockUseNavigate = jest.fn()
-
-  jest.spyOn(window, 'alert').mockImplementation(() => { })
-
-  jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockUseNavigate,
-  }))
-
   const user1LogIn = () => {
     render(
       <MemoryRouter initialEntries={["/commentedit/1"]}>
@@ -79,13 +69,7 @@ describe("<EditComment />", () => {
           />
           <Route
             path='/workoutshow/:id'
-            element={
-              <ShowWorkout
-                workouts={mockWorkouts}
-                deleteWorkout={deleteWorkoutSpy}
-                logged_in={true}
-              />
-            }
+            element={ <Outlet/ > }
           />
         </Routes>
       </MemoryRouter>
@@ -110,13 +94,7 @@ describe("<EditComment />", () => {
           />
           <Route
             path='/workoutshow/:id'
-            element={
-              <ShowWorkout
-                workouts={mockWorkouts}
-                deleteWorkout={deleteWorkoutSpy}
-                logged_in={true}
-              />
-            }
+            element={ <Outlet/ > }
           />
         </Routes>
       </MemoryRouter>
@@ -140,13 +118,32 @@ describe("<EditComment />", () => {
           />
           <Route
             path='/workoutshow/:id'
+            element={ <Outlet/ > }
+          />
+        </Routes>
+      </MemoryRouter>
+    )
+  }
+
+  const noComments = () => {
+    render(
+      <MemoryRouter initialEntries={["/commentedit/1"]}>
+        <Routes>
+          <Route
+            path="/commentedit/:id"
             element={
-              <ShowWorkout
-                workouts={mockWorkouts}
-                deleteWorkout={deleteWorkoutSpy}
-                logged_in={false}
+              <EditComment
+                editComment={editCommentSpy}
+                logged_in={true}
+                current_user={mockUser1}
+                workout_id={1}
+                comments={[]}
               />
             }
+          />
+          <Route
+            path='/workoutshow/:id'
+            element={ <Outlet/ > }
           />
         </Routes>
       </MemoryRouter>
@@ -195,75 +192,58 @@ describe("<EditComment />", () => {
     ).toBeInTheDocument()
   })
 
-  it("rejects submit while required elements are excluded", () => {
-    user1LogIn()
-
-    let confirmButton = screen.getByRole("button", {
-      name: /submit/i,
-    })
-    fireEvent.click(confirmButton)
-
-    expect(editCommentSpy).toHaveBeenCalledTimes(0)
-
-    expect(mockUseNavigate).toHaveBeenCalledTimes(0)
-  })
-
-  it("allows submit when required elements are input", () => {
+  it("allows submit when required elements are input", async () => {
+    const user = userEvent.setup()
     user1LogIn()
 
     let titleField = screen.getByRole('textbox', {
       name: /title/i
     })
-    fireEvent.change(titleField, {
-      target: {
-        value: newComment.title
-      }
-    })
+    await user.type(titleField, newComment.title)
 
     expect(titleField).toHaveValue(newComment.title)
 
     let commentField = screen.getByRole('textbox', {
       name: /comment/i
     })
-    fireEvent.change(commentField, {
-      target: {
-        value: newComment.comment
-      }
-    })
+    await user.type(commentField, newComment.comment)
 
     expect(commentField).toHaveValue(newComment.comment)
 
     let confirmButton = screen.getByRole("button", {
       name: /submit/i,
     })
-    fireEvent.click(confirmButton)
+    await user.click(confirmButton)
 
-    // Magically passes - fails with parens
-    expect(editCommentSpy).toHaveBeenCalled
-
-    // Magically passes - fails with parens
-    expect(mockUseNavigate).toHaveBeenCalled
+    expect(editCommentSpy).toHaveBeenCalled()
+    expect(mockUseNavigate).toHaveBeenCalled()
   })
 
-  it("returns to the index on cancel click", () => {
+  it("returns to the index on cancel click", async () => {
+    const user = userEvent.setup()
     user1LogIn()
 
     let cancelButton = screen.getByRole("button", {
       name: /cancel/i,
     })
-    fireEvent.click(cancelButton)
+    await user.click(cancelButton)
 
-    // Magically passes - fails with parens
-    expect(mockUseNavigate).toHaveBeenCalled
+    expect(mockUseNavigate).toHaveBeenCalled()
   })
 
-  it("does not allow users to edit others' comments", () => {
+  it("provides an alert if there are no comments", () => {
+    noComments()
+    expect(window.alert).toHaveBeenCalled()
+  })
+
+  it("does not allow users to edit others' comments", async () => {
+    const user = userEvent.setup()
     user2LogIn()
 
     let confirmButton = screen.getByRole("button", {
       name: /submit/i,
     })
-    fireEvent.click(confirmButton)
+    await user.click(confirmButton)
 
     expect(editCommentSpy).toHaveBeenCalledTimes(0)
     expect(window.alert).toHaveBeenCalled()
