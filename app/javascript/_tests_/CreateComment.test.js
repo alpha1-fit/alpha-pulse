@@ -5,6 +5,16 @@ import CreateComment from "../components/pages/CreateComment";
 import { BrowserRouter, useNavigate } from "react-router-dom";
 import "@testing-library/jest-dom";
 
+const createCommentSpy = jest.fn()
+
+const mockUseNavigate = jest.fn()
+
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockUseNavigate,
+}))
+
+
 describe("<CreateComment />", () => {
   const mockComment = {
     title: "Terminator",
@@ -15,38 +25,32 @@ describe("<CreateComment />", () => {
 
   const mockUser1 = {
     email: 'test@testing1.com',
-    password: 'testing123',
-    password_confirmation: 'testing123',
-    username: 'Dennis',
-    photo: 'url',
     id: 1
   }
 
-  const createCommentSpy = jest.fn()
-
-  const mockUseNavigate = jest.fn()
-
-  jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockUseNavigate,
-  }))
-
-  beforeEach(() => {
+  const renderIn = () => {
     render(
       <BrowserRouter>
-        <CreateComment createComment={createCommentSpy} logged_in={true} current_user={mockUser1} workout_id={1} />
+        <CreateComment
+          createComment={createCommentSpy}
+          logged_in={true}
+          current_user={mockUser1}
+          workout_id={1} />
       </BrowserRouter>
     )
-  })
+  }
 
   afterEach(() => {
     jest.clearAllMocks()
   })
 
   it("renders the page", () => {
+    renderIn()
   })
 
   it("has a form with entries for title and comment", () => {
+    renderIn()
+
     expect(screen.getByRole('textbox', {
       name: /title/i
     }))
@@ -59,6 +63,8 @@ describe("<CreateComment />", () => {
   })
 
   it("has a button to submit", () => {
+    renderIn()
+
     expect(
       screen.getByRole("button", {
         name: /submit/i,
@@ -67,6 +73,8 @@ describe("<CreateComment />", () => {
   })
 
   it("has a button to cancel", () => {
+    renderIn()
+
     expect(
       screen.getByRole("button", {
         name: /cancel/i,
@@ -74,29 +82,42 @@ describe("<CreateComment />", () => {
     ).toBeInTheDocument
   })
 
-  it("submits data on button click", () => {
+  it("allows data entry and submission", async () => {
+    const user = userEvent.setup()
+    renderIn()
+
+
+    let titleBox = screen.getByRole('textbox', {
+      name: /title/i
+    })
+
+    let commentBox = screen.getByRole('textbox', {
+      name: /comment/i
+    })
+
     let confirmButton = screen.getByRole("button", {
       name: /submit/i,
     })
-    userEvent.click(confirmButton)
 
-    // This validation should ensure line 19 of CreateComment.js
-    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
-    expect(createCommentSpy).toHaveBeenCalled
+    await user.type(titleBox, mockComment.title)
+    await user.type(commentBox, mockComment.comment)
+    await user.click(confirmButton)
 
-    // This validation should ensure line 20 of CreateComment.js
-    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
-    expect(mockUseNavigate).toHaveBeenCalled
+    expect(titleBox).toHaveValue(mockComment.title)
+    expect(commentBox).toHaveValue(mockComment.comment)
+    expect(createCommentSpy).toHaveBeenCalled()
+    expect(mockUseNavigate).toHaveBeenCalled()
   })
 
-  it("returns to the index on cancel click", () => {
+  it("returns to the index on cancel click", async () => {
+    const user = userEvent.setup()
+    renderIn()
+
     let cancelButton = screen.getByRole("button", {
       name: /cancel/i,
     })
-    userEvent.click(cancelButton)
+    await user.click(cancelButton)
 
-    // This validation should ensure line 24 of CreateComment.js
-    // Jest --coverage shows either test is ineffective or coverage assessment is inaccurate
-    expect(mockUseNavigate).toHaveBeenCalled
+    expect(mockUseNavigate).toHaveBeenCalled()
   })
 })
