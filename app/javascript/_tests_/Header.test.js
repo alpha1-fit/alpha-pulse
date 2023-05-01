@@ -1,12 +1,11 @@
-import React from "react";
-import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import { fireEvent, act } from "@testing-library/react";
-import { MemoryRouter, Routes, Route, useNavigate } from "react-router-dom";
-import "@testing-library/jest-dom";
-import Header from "../components/components/Header";
-import Home from "../components/pages/Home";
-import IndexWorkouts from "../components/pages/IndexWorkouts";
+import React from "react"
+import { render, screen } from "@testing-library/react"
+import userEvent from "@testing-library/user-event"
+import { MemoryRouter, Routes, Route } from "react-router-dom"
+import "@testing-library/jest-dom"
+import Header from "../components/components/Header"
+import Home from "../components/pages/Home"
+import IndexWorkouts from "../components/pages/IndexWorkouts"
 
 const toggleSignInSpy = jest.fn()
 
@@ -64,7 +63,8 @@ describe("<Header />", () => {
     loggedInRender()
   })
 
-  it("has clickable links for a registered user", () => {
+  it("has clickable links for a registered user", async () => {
+    const user = userEvent.setup()
     loggedInRender()
 
     let logo = screen.getByRole('img', {
@@ -77,20 +77,29 @@ describe("<Header />", () => {
 
     expect(createLink).toBeInTheDocument
 
-    fireEvent.click(createLink)
+    await user.click(createLink)
 
     expect(toggleNewWorkoutSpy).toHaveBeenCalled()
+
+    let togglerButton = screen.getByRole('button', {
+      name: /toggle navigation/i
+    })
+
+    expect(togglerButton).toBeInTheDocument
+
+    await user.click(togglerButton)
 
     let logoutLink = screen.getByText(/sign out/i)
 
     expect(logoutLink).toBeInTheDocument
 
-    fireEvent.click(logoutLink)
+    await user.click(logoutLink)
 
     expect(signOutSpy).toHaveBeenCalled()
-  });
+  })
 
-  it("has clickable links for an unregistered user", () => {
+  it("has clickable links for an unregistered user", async () => {
+    const user = userEvent.setup()
     loggedOutRender()
 
     let workoutsLink = screen.getByRole('link', {
@@ -101,21 +110,16 @@ describe("<Header />", () => {
 
     let signinLink = screen.getByText(/sign in/i)
 
-    act(() => {
-      fireEvent.click(workoutsLink)
-    })
+    await user.click(workoutsLink)
 
     expect(mockUseNavigate).toHaveBeenCalled
 
-    act(() => {
-      fireEvent.click(signupLink)
-    })
+    await user.click(signupLink)
 
     expect(toggleSignUpSpy).toHaveBeenCalled()
     
-    act(() => {
-      fireEvent.click(signinLink)
-    })
+    await user.click(signinLink)
+
     expect(toggleSignInSpy).toHaveBeenCalled()
-  });
-});
+  })
+})

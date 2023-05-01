@@ -114,6 +114,9 @@ a:hover:after {
     var(--accent-color-1) 60% 65%,
     var(--accent-color-3) 85% 100%
   );
+  display: flex;
+  flex-direction: column;
+  align-content: center;
 }
 .home,
 h2 {
@@ -167,7 +170,7 @@ h2 {
 .profile {
   object-fit: contain;
   width: 90vw;
-  height: 90vh;
+  height: 85vh;
   align-self: center;
   margin: auto;
 }

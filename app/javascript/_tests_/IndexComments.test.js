@@ -20,7 +20,7 @@ describe("<IndexWorkouts />", () => {
   const renderIn = () => {
     render(
       <BrowserRouter>
-        <IndexComments logged_in={true} current_user={testUser} comments={[myTestComment, otherTestComment]} deleteComment={deleteCommentSpy}/>
+        <IndexComments current_user={testUser} comments={[myTestComment, otherTestComment]} deleteComment={deleteCommentSpy}/>
       </BrowserRouter>
     )
   }
@@ -28,7 +28,7 @@ describe("<IndexWorkouts />", () => {
   const renderOut = () => {
     render(
       <BrowserRouter>
-        <IndexComments logged_in={false} current_user={{}} comments={[myTestComment, otherTestComment]} deleteComment={deleteCommentSpy}/>
+        <IndexComments current_user={{}} comments={[myTestComment, otherTestComment]} deleteComment={deleteCommentSpy}/>
       </BrowserRouter>
     )
   }
@@ -45,11 +45,11 @@ describe("<IndexWorkouts />", () => {
     renderIn()
 
     let card1 = screen.getByRole('heading', {
-      name: /title: terminator/i
+      name: /terminator/i
     })
 
     let card2 = screen.getByRole('heading', {
-      name: /title: zen/i
+      name: /zen/i
     })
 
     expect(card1).toBeInTheDocument

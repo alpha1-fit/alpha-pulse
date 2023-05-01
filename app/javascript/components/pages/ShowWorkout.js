@@ -39,9 +39,12 @@ const ShowWorkout = ({
   }, [comments, selectedWorkout])
 
   const parseTime = (seconds) => {
-    let hours = Math.floor(seconds / 3600)
-    let minutes = Math.floor((seconds - hours * 3600) / 60)
-    let remainder = seconds - hours * 3600 - minutes * 60
+    let hours = "0" + Math.floor(seconds / 3600)
+    hours = hours.slice(-2)
+    let minutes = "0" + Math.floor((seconds - hours * 3600) / 60)
+    minutes = minutes.slice(-2)
+    let remainder = "0" + (seconds - hours * 3600 - minutes * 60)
+    remainder = remainder.slice(-2)
     return [hours, minutes, remainder].join(":")
   }
 
