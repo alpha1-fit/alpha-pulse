@@ -14,19 +14,39 @@ import EditComment from "./pages/EditComment";
 import SignUp from "./components/SignUp";
 import SignIn from "./components/SignIn";
 import CreateWorkoutModal from "./components/CreateWorkout";
+import fakeWorkouts from "./fakeWorkouts";
+import fakeComments from "./fakeComments";
 
 const App = (props) => {
+  const [loggedIn, setLoggedIn] = useState(false)
+  useEffect(() => {
+    setLoggedIn(props.logged_in)
+  }, [props.logged_in, props.current_user, sessionChange])
+
+  const [currentUser, setCurrentUser] = useState({})
+  useEffect(() => {
+    setCurrentUser(props.current_user)
+  }, [props.logged_in, props.current_user, sessionChange])
+
+  const [sessionChange, setSessionChange] = useState(false)
+
   const [workouts, setWorkouts] = useState([]);
   useEffect(() => {
-    readWorkouts()
-  }, [])
+    if(loggedIn){
+      readWorkouts()
+    } else {
+      setWorkouts(fakeWorkouts)
+    }
+  }, [loggedIn, sessionChange])
 
   const [comments, setComments] = useState([]);
   useEffect(() => {
-    readComments()
-  }, [])
-
-  const [user, setUser] = useState()
+    if(loggedIn){
+      readComments()
+    } else {
+      setComments(fakeComments)
+    }
+  }, [loggedIn, sessionChange])
 
   const [showSignUp, setShowSignUp] = useState(false)
 
@@ -62,6 +82,7 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
+      .then(() => setSessionChange(!sessionChange))
       .catch((errors) => console.log("User create errors:", errors))
   }
 
@@ -75,6 +96,7 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
+      .then(() => setSessionChange(!sessionChange))
       .catch((errors) => console.log("Session errors:", errors))
   }
   
@@ -86,6 +108,7 @@ const App = (props) => {
       method: "GET"
     })
       .then((response) => response.json())
+      .then(() => setSessionChange(!sessionChange))
       .catch((errors) => console.log("delete errors:", errors))
   }
 
@@ -106,7 +129,7 @@ const App = (props) => {
       method: "POST"
     })
       .then((response) => response.json())
-      .then((payload) => readWorkouts())
+      .then(() => readWorkouts())
       .catch((errors) => console.log("Workout create errors:", errors))
   }
 
@@ -131,7 +154,7 @@ const App = (props) => {
       method: "DELETE"
     })
       .then((response) => response.json())
-      .then((payload) => readWorkouts())
+      .then(() => readWorkouts())
       .catch((errors) => console.log("delete errors:", errors))
   }
 
@@ -152,7 +175,7 @@ const App = (props) => {
       method: "POST"
     })
     .then((response) => response.json())
-    .then((payload) => readComments())
+    .then(() => readComments())
     .catch((errors) => console.log("Comment create errors:", errors))
   }
 
@@ -165,7 +188,7 @@ const App = (props) => {
       method: "PATCH",
     })
       .then((response) => response.json())
-      .then((payload) => readComments(payload))
+      .then(() => readComments())
       .catch((errors) => console.log("Comment update errors:", errors));
   }
 
@@ -177,7 +200,7 @@ const App = (props) => {
       method: "DELETE"
     })
       .then((response) => response.json())
-      .then((payload) => readComments())
+      .then(() => readComments())
       .catch((errors) => console.log("delete errors:", errors))
   }
 
@@ -185,16 +208,16 @@ const App = (props) => {
     <div className="page-container">
       {showSignUp && <SignUp createUser={createUser} toggle={toggleShowSignUp} />}
       {showSignIn && <SignIn newSession={createSession} toggle={toggleShowSignIn} />}
-      {showNewWorkout && <CreateWorkoutModal logged_in={props.logged_in} current_user={props.current_user} toggle={toggleShowNewWorkout} createWorkout={createWorkout} />}
+      {showNewWorkout && <CreateWorkoutModal logged_in={loggedIn} currentUser={currentUser} toggle={toggleShowNewWorkout} createWorkout={createWorkout} />}
       <BrowserRouter>
-        <Header logged_in={props.logged_in} toggleSignUp={toggleShowSignUp} toggleSignIn={toggleShowSignIn} toggleNewWorkout={toggleShowNewWorkout} logout={destroySession}/>
+        <Header logged_in={loggedIn} toggleSignUp={toggleShowSignUp} toggleSignIn={toggleShowSignIn} toggleNewWorkout={toggleShowNewWorkout} logout={destroySession}/>
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
-          <Route path='/workoutindex' element={<IndexWorkouts  {...props} workouts={workouts} toggleNewWorkout={toggleShowNewWorkout}/>} />
-          <Route path='/workoutshow/:id' element={<ShowWorkout {...props} workouts={workouts} deleteWorkout={deleteWorkout}/>} />
+          <Route path='/workoutindex' element={<IndexWorkouts  logged_in={loggedIn} currentUser={currentUser} workouts={workouts} toggleNewWorkout={toggleShowNewWorkout}/>} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout logged_in={loggedIn} currentUser={currentUser} workouts={workouts} deleteWorkout={deleteWorkout}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
-          <Route path='/commentindex' element={<IndexComments {...props} comments={comments} createComment={createComment} deleteComment={deleteComment}/>} />
+          <Route path='/commentindex' element={<IndexComments logged_in={loggedIn} currentUser={currentUser} comments={comments} createComment={createComment} deleteComment={deleteComment}/>} />
           <Route path='/commentnew' element={<CreateComment />} />
           <Route path='/commentedit/:id' element={<EditComment updateComment={updateComment} />} />
           <Route path='*' element={<NotFound />} />

@@ -16,15 +16,12 @@ const ShowWorkout = ({
   logged_in,
   deleteWorkout,
   comments,
+  deleteComment,
   current_user,
 }) => {
   const { id } = useParams()
   const navigate = useNavigate()
-  let selectedWorkout =
-    Array.isArray(workouts) && workouts.find((workout) => workout.id === +id)
-  let fakeSelectedWorkout =
-    Array.isArray(fakeWorkouts) &&
-    fakeWorkouts.find((fakeWorkout) => fakeWorkout.id === +id)
+  let selectedWorkout = logged_in ? workouts.find((workout) => workout.id === +id) : fakeWorkouts.find((fakeWorkout) => fakeWorkout.id === +id)
 
   const handleDelete = () => {
     if (!logged_in) {
@@ -93,6 +90,7 @@ const ShowWorkout = ({
           comments={filteredComments}
           current_user={current_user}
           logged_in={logged_in}
+          deleteComment={deleteComment}
         />
       </div>
     </div>

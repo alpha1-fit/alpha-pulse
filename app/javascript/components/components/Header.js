@@ -29,7 +29,6 @@ const Header = ({ toggleSignUp, toggleSignIn, toggleNewWorkout, logged_in, logou
 
   const newWorkoutClick = () => {
     toggleNewWorkout()
-
   }
 
   return (

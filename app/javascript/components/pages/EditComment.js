@@ -13,14 +13,16 @@ const EditComment = ({logged_in, current_user, workout_id, comments, editComment
   })
   useEffect(() => {
     if(comments.length > 0) {
-      let currentComment = Array.isArray(comments) && comments.find((workout) => workout.id === +id
+      let currentComment = comments.find((workout) => workout.id === +id
       )
-
       setNewComment({
         title: currentComment.title,
         comment: currentComment.comment,
         workout_id: currentComment.workout_id,
+        user_id: currentComment.user_id
       })
+    } else {
+      alert("I'm sorry, there are no comments available.")
     }
   }, [comments])
 

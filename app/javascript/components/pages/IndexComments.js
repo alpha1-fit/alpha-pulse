@@ -6,6 +6,7 @@ const IndexComments = ({
   logged_in,
   current_user,
   comments,
+  deleteComment
 }) => {
   const handleDelete = () => { };
   return (
