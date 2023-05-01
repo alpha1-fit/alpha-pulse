@@ -33,6 +33,34 @@ That's why we created αlphaPulse, the fitness app that connects you to your fri
 * As a user of αlphaPulse, when logged-in, you can edit as well as delete comments you have created 
 
 ### API Endpoints
+This application uses several models and controllers through Ruby on Rails. All views are managed on the frontend through React. The available routes, controllers, and methods are:
+
+#### User registration
+[parameters]: username:string, email:string, password:string, password_validation:string, photo:string
+
+[POST] **/users/signup** Creates a new user
+
+#### User sessions
+[parameters]: username:string, password:string
+
+[POST] **/users/login** Creates a new session
+[GET] **/users/logout** Destorys an existing session
+
+#### Workouts
+[parameters]: name:string, workout_type:string, duration:integer (number of seconds), schedule:datetime, description:text, user_id:integer
+
+[POST] **/workouts** Creates a new workout
+[GET] **/workouts** Fetches an array of all workouts
+[PATCH] **/workouts/:id** Updates the values of this workout
+[DELETE] **/workouts/:id** Destroys this workout
+
+#### Comments
+[parameters]: title:string, comment:text, workout_id:integer, user_id:integer
+
+[POST] **/comments** Creates a new workout
+[GET] **/comments** Fetches an array of all workouts
+[PATCH] **/comments/:id** Updates the values of this workout
+[DELETE] **/comments/:id** Destroys this workout
 
 ## Running the project
 
