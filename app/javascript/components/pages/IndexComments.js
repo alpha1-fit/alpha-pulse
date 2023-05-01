@@ -8,7 +8,9 @@ const IndexComments = ({
   comments,
   deleteComment
 }) => {
-  const handleDelete = () => { };
+  const handleDelete = (comment_id) => {
+    deleteComment(comment_id)
+  };
   return (
     <div className="content-wrap">
       <div className="card-container">
@@ -30,7 +32,7 @@ const IndexComments = ({
                         <Button>
                           <NavLink to={`/commentedit/${comment.id}`}>Edit</NavLink>
                         </Button>
-                        <Button onClick={handleDelete}>Delete</Button>
+                        <Button onClick={handleDelete(comment.id)}>Delete</Button>
                       </div>
                     )}
                   </div>

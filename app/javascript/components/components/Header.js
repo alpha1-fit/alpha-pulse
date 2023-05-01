@@ -33,9 +33,9 @@ const Header = ({ toggleSignUp, toggleSignIn, toggleNewWorkout, logged_in, logou
 
   return (
     <div className='Header'>
-      <Navbar fixed="top" color="dark" dark expand="lg">
+      <Navbar fixed="top" color="dark" dark expand="md">
         <NavbarBrand href="/"><img className="logo" src={alphaPulseLogo} alt='AlphaPulse Logo' />AlphaPulse</NavbarBrand>
-        <NavbarToggler onClick={toggle}></NavbarToggler>
+        <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="me-auto" navbar>
             <NavItem>
@@ -43,26 +43,26 @@ const Header = ({ toggleSignUp, toggleSignIn, toggleNewWorkout, logged_in, logou
             </NavItem>
             {logged_in && (
               <>
-                  <NavItem>
-                    <a onClick={newWorkoutClick}>Create Workout</a>
-                  </NavItem>
-                  <NavItem>
-                    <a onClick={logoutClick}>Sign Out</a>
-                  </NavItem>
+                <NavItem>
+                  <a onClick={newWorkoutClick}>Create Workout</a>
+                </NavItem>
+                <NavItem>
+                  <a onClick={logoutClick}>Sign Out</a>
+                </NavItem>
               </>
             )}
             {!logged_in && (
               <>
-                  <NavItem>
-                    <a onClick={signInClick}>Sign In</a>
-                  </NavItem>
-                  <NavItem>
-                    <a onClick={signUpClick}>Sign Up</a>
-                  </NavItem>
+                <NavItem>
+                  <a onClick={signInClick}>Sign In</a>
+                </NavItem>
+                <NavItem>
+                  <a onClick={signUpClick}>Sign Up</a>
+                </NavItem>
               </>
             )}
           </Nav>
-          </Collapse>
+        </Collapse>
       </Navbar>
     </div>
   )
