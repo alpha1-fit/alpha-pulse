@@ -88,7 +88,6 @@ describe("<Header />", () => {
     expect(togglerButton).toBeInTheDocument
 
     await user.click(togglerButton)
-    screen.logTestingPlaygroundURL()
 
     let logoutLink = screen.getByText(/sign out/i)
 
