@@ -3,7 +3,6 @@ import { Button } from "reactstrap";
 import { NavLink } from "react-router-dom";
 
 const IndexComments = ({
-  logged_in,
   current_user,
   comments,
   deleteComment
@@ -14,11 +13,10 @@ const IndexComments = ({
   return (
     <div className="content-wrap">
       <div className="card-container">
-        {logged_in &&
-          Array.isArray(comments) &&
-          comments.map((comment) => {
+        {comments &&
+          comments.map((comment, index) => {
             return (
-              <div className="card" key={comment.id}>
+              <div className="card" key={index}>
                 <div className="card-content">
                   <div className="card-body">
                     <h3 className="card-title">{comment.title}</h3>

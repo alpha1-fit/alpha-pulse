@@ -32,6 +32,24 @@ describe("<IndexWorkouts />", () => {
       schedule: "2023-04-18 10:00",
       description: "medium day",
       user_id: 2
+    },
+    {
+      id: 3,
+      name: "test3",
+      workout_type: "testc",
+      duration: 1800,
+      schedule: "2023-04-18 08:00",
+      description: "hard day",
+      user_id: 1
+    },
+    {
+      id: 4,
+      name: "test4",
+      workout_type: "testd",
+      duration: 1800,
+      schedule: "2023-04-18 18:00",
+      description: "rest day",
+      user_id: 2
     }
   ]
 
@@ -104,11 +122,19 @@ describe("<IndexWorkouts />", () => {
     })
 
     let card1Heading = screen.getByRole('heading', {
-      name: /name: test1/i
+      name: /test1/i
     })
 
     let card2Heading = screen.getByRole('heading', {
-      name: /name: test2/i
+      name: /test2/i
+    })
+
+    let card3Heading = screen.getByRole('heading', {
+      name: /test3/i
+    })
+
+    let card4Heading = screen.getByRole('heading', {
+      name: /test4/i
     })
 
     await user.click(toggleButton)
@@ -123,7 +149,9 @@ describe("<IndexWorkouts />", () => {
 
     expect(card1Heading).toBeInTheDocument
     expect(card2Heading).toBeInTheDocument
-    expect(cards).toHaveLength(2)
+    expect(card3Heading).toBeInTheDocument
+    expect(card4Heading).toBeInTheDocument
+    expect(cards).toHaveLength(4)
   })
 
   it("displays only my workouts when the button is clicked", async () => {
@@ -135,11 +163,19 @@ describe("<IndexWorkouts />", () => {
     })
 
     let card1Heading = screen.getByRole('heading', {
-      name: /name: test1/i
+      name: /test1/i
     })
 
     let card2Heading = screen.getByRole('heading', {
-      name: /name: test2/i
+      name: /test2/i
+    })
+
+    let card3Heading = screen.getByRole('heading', {
+      name: /test3/i
+    })
+
+    let card4Heading = screen.getByRole('heading', {
+      name: /test4/i
     })
 
     await user.click(toggleButton)
@@ -153,7 +189,9 @@ describe("<IndexWorkouts />", () => {
 
     expect(card1Heading).toBeInTheDocument
     expect(card2Heading).not.toBeInTheDocument
-    expect(cards).toHaveLength(1)
+    expect(card3Heading).toBeInTheDocument
+    expect(card4Heading).not.toBeInTheDocument
+    expect(cards).toHaveLength(2)
   })
 
   it("has a link for each workout to view details", async () => {
@@ -162,7 +200,7 @@ describe("<IndexWorkouts />", () => {
 
     let links = screen.getAllByRole('link', { name: /see details/i })
 
-    expect(links).toHaveLength(2)
+    expect(links).toHaveLength(4)
 
     expect(links[0]).toHaveAttribute('href', `/workoutshow/1`)
 

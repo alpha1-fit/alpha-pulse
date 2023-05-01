@@ -215,7 +215,7 @@ const App = (props) => {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/workoutindex' element={<IndexWorkouts  logged_in={loggedIn} current_user={currentUser} workouts={workouts} toggleNewWorkout={toggleShowNewWorkout}/>} />
-          <Route path='/workoutshow/:id' element={<ShowWorkout logged_in={loggedIn} current_user={currentUser} workouts={workouts} deleteWorkout={deleteWorkout} comments={comments}/>} />
+          <Route path='/workoutshow/:id' element={<ShowWorkout logged_in={loggedIn} current_user={currentUser} workouts={workouts} deleteWorkout={deleteWorkout} deleteComment={deleteComment} comments={comments}/>} />
           <Route path='/workoutedit/:id/edit' element={<EditWorkout workouts={workouts} updateWorkout={updateWorkout}/>} />
           <Route path='/commentindex' element={<IndexComments logged_in={loggedIn} current_user={currentUser} comments={comments} createComment={createComment} deleteComment={deleteComment}/>} />
           <Route path='/commentnew' element={<CreateComment />} />
