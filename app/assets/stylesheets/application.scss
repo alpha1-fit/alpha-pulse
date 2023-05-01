@@ -216,7 +216,7 @@ h2 {
   height: 60vh;
   aspect-ratio: 1 / 1.5;
   background: var(--base-color);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: #9bffff;
   background-color: var(--base-color);
   display: flex;
@@ -266,8 +266,8 @@ h2 {
   position: relative;
 }
 
-.workout-show{
-  height:60vh;
+.workout-show {
+  height: 60vh;
   aspect-ratio: 1 / 1.5;
   background: var(--base-color);
   border-radius: 0.5rem;
@@ -276,46 +276,63 @@ h2 {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin:auto;
-  width:50%;
+  margin: auto;
+  width: 50%;
   border-style: 4px solid;
   border-color: whitesmoke;
   align-content: center;
-  top:200px;
- 
+  top: 200px;
 }
-.show-title{
-  color: var(--accent-color-1)
+.show-title {
+  color: var(--accent-color-1);
 }
-.realcard-title{
-  color:var(--accent-color-1)
+.realcard-title {
+  color: var(--accent-color-1);
 }
-.navlink-button{
-  gap:2em;
-  background: var(--base-color);
-  border: none
-}
-.navlink-button:hover{
-  outline-color: transparent;
-  background-color: var(--base-color);
-  transition: 0.7s;
-  outline-style:solid;
-  box-shadow: 0 0 0 2px #9bffff;
-  margin: auto
-}
-.deletebutton{
+.navlink-button {
+  gap: 2em;
   background: var(--base-color);
   border: none;
 }
-.deletebutton:hover{  
+.navlink-button:hover {
   outline-color: transparent;
   background-color: var(--base-color);
   transition: 0.7s;
-  outline-style:solid;
+  outline-style: solid;
   box-shadow: 0 0 0 2px #9bffff;
-  margin:auto
+  margin: auto;
 }
-.nav-link{
+.deletebutton {
+  background: var(--base-color);
+  border: none;
+}
+.deletebutton:hover {
+  outline-color: transparent;
+  background-color: var(--base-color);
+  transition: 0.7s;
+  outline-style: solid;
+  box-shadow: 0 0 0 2px #9bffff;
+  margin: auto;
+}
+.nav-link {
   // background-color: #c6c1c1;
-
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.alpha {
+  position: relative;
+  display: block;
+  margin: 0 auto;
+}
+.pulse {
+  animation: pulse 2s infinite;
 }
